@@ -1,4 +1,3 @@
-```markdown
 # BDTrueValueRecSys
 
 #### 介绍
