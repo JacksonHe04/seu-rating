@@ -45,7 +45,8 @@ https://blog.csdn.net/qq_22841387/article/details/120734861
 
 #### 管理者：审核
 
-开源开发者提交 PR 的流程
+## 开源开发者提交 PR 的流程
+如果你不是我们团队的成员，但也想为该项目做出贡献，请参考该网页文档提交 PR。
 https://help.gitee.com/base/pullrequest/Fork+Pull
 
 ---
