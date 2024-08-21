@@ -25,7 +25,7 @@ input[type="text"] {
 input[type="submit"] {
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #0056b3;
+    background-color: #009eb3;
     color: white;
     border: none;
     border-radius: 4px;
@@ -33,7 +33,7 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #003f8a;
+    background-color: #009eb3;
 }
 
 #results div {
@@ -46,7 +46,7 @@ input[type="submit"]:hover {
 
 #results a {
     font-weight: bold;
-    color: #0056b3;
+    color: #009eb3;
     text-decoration: none;
 }
 
