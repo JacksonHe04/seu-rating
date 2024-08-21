@@ -25,7 +25,7 @@ document.getElementById("search-form").addEventListener("submit", function(event
             }
         })
         .catch(error => {
-            resultsDiv.innerHTML = "搜索出错，请稍后再试。";
+            resultsDiv.innerHTML = "搜索出错乐！请稍后再试。";
             console.error("搜索错误:", error);
         });
 });
