@@ -1,11 +1,11 @@
-/*让这页的内容居中*/
 /* 设置全局样式，包括字体、背景色、文字颜色和默认的边距及内边距 */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    margin: 0;
-    padding: 20px;
+    /* 设置页面的字体和背景颜色，以及基本的布局属性 */
+    font-family: Arial, sans-serif; /* 定义字体为 Arial 或者无衬线字体 */
+    background-color: #f4f4f4; /* 设置背景颜色为浅灰色 (#f4f4f4) */
+    color: #333; /* 设置文本颜色为深灰色 (#333) */
+    margin: 0; /* 移除页面的外边距 */
+    padding: 20px; /* 设置页面的内边距为 20 像素，增加内容区域的视觉空间 */
 }
 
 /* 设置标题颜色和居中对齐 */
@@ -14,35 +14,50 @@ h1 {
     text-align: center;
 }
 
-/* 设置表单的底部边距 */
-form {
-    margin-bottom: 20px;
+/* 为搜索容器添加样式 */
+#search-container {
+    /* 设置元素宽度为容器的80% */
+    width: 30%;
+
+    /* 容器宽度要适应页面的宽度，使其居中显示*/
+    margin: 0 auto;
+
+    /* 将内水平左右边距设置为80 */
+    /* 将内垂直上下边距设置为30 */
+    padding: 30px 80px 30px 80px;
+
+    background-color: #f4f4f4; /* 背景颜色 */
+    border: 0 solid #ccc; /* 边框 */
+    border-radius: 50px; /* 圆角 */
 }
 
-/* 设置文本输入框的样式，包括宽度、内边距、字体大小、边框和圆角 */
-input[type="text"] {
-    width: 80%;
-    padding: 10px;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+/* 为表单添加样式 */
+#search-form {
+    display: flex; /* 使用弹性布局 */
+    flex-direction: column; /* 垂直排列子元素 */
+    align-items: center; /* 水平居中子元素 */
 }
 
-
-/* 定义提交按钮的样式 */
-input[type="submit"] {
-    padding: 10px 20px; /* 设置按钮内部填充，使内容在按钮中有足够的空间 */
-    font-size: 16px; /* 设置按钮文字大小，使按钮易于点击 */
-    background-color: #009eb3; /* 设置按钮背景颜色，使其看起来更加突出 */
-    color: white; /* 设置按钮文字颜色为白色，以确保文字在任何背景色上都清晰可见 */
-    border: none; /* 移除按钮的边框，以实现更现代的外观 */
-    border-radius: 4px; /* 设置按钮的圆角，以使其外观更加友好和易于点击 */
-    cursor: pointer; /* 设置光标在按钮上时显示为手形，以指示用户此元素可点击 */
+/* 为输入框添加样式 */
+#search-form input[type="text"] {
+    width: 100%; /* 输入框宽度与容器相同 */
+    padding: 20px; /* 内边距 */
+    border: 1px solid #ccc; /* 边框 */
+    border-radius: 50px; /* 圆角 */
+    cursor: default;
 }
 
-/* 当鼠标悬停在提交按钮上时，设置背景颜色 */
-input[type="submit"]:hover {
-    background-color: #009eb3;
+/* 为提交按钮添加样式 */
+#search-form input[type="submit"] {
+    padding: 10px 30px; /* 内边距 */
+    background-color: #009eb3; /* 背景颜色 */
+    color: white; /* 文字颜色 */
+    border: none; /* 无边框 */
+    border-radius: 50px; /* 圆角 */
+}
+
+#search-form input[type="submit"]:hover {
+    background-color: rgba(0, 158, 179, 0.76); /* 更改背景颜色 */
 }
 
 /* 为#results下的div元素设置样式，包括背景色、内边距、边框、圆角和底部外边距 */
@@ -61,9 +76,10 @@ input[type="submit"]:hover {
     text-decoration: none;
 }
 
-
+/* 当鼠标悬停在结果集中的链接上时，给链接添加下划线装饰 */
 #results a:hover {
     text-decoration: underline;
 }
+
 /*test001*/
 /*test002*/ /*test002*/
