@@ -1,23 +1,30 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+    <!-- 设置文档头部信息 -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>问题搜索工具</title>
+    <!-- 引入外部CSS样式表 -->
     <link rel="stylesheet" href="web001.css">
 </head>
 <body>
+    <!-- 显示页面标题 -->
     <h1>问题搜索工具</h1>
 
+    <!-- 创建一个搜索表单 -->
     <form id="search-form">
         <label for="question">输入您的问题：</label><br>
         <input type="text" id="question" name="question" size="50" required><br><br>
         <input type="submit" value="搜索">
     </form>
 
+    <!-- 显示搜索结果的标题 -->
     <h2>搜索结果：</h2>
+    <!-- 定义一个用于展示搜索结果的容器 -->
     <div id="results"></div>
 
+    <!-- 引入外部JavaScript文件以实现页面功能 -->
     <script src="web001.js"></script>
 </body>
 </html>
