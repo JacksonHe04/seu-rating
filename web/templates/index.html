@@ -1,0 +1,29 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐搜索工具</title>
+    <!-- 引用 web001.css 文件 -->
+    <link rel="stylesheet" href="web001.css">
+</head>
+
+<body>
+    <h1>Big Data Truth Recommended System</h1>
+    <div id="search-container">
+        <form id="search-form" action="/get_band_info" method="post">
+            <label for="question">请输入您想了解的乐队:</label><br>
+            <input type="text" id="question" name="question" placeholder="请输入您想了解的乐队" size="50" required><br><br>
+            <input type="submit" value="搜索">
+        </form>
+    </div>
+
+    <div id="results"></div>
+
+    <iframe id="hidden-iframe" style="display:none;"></iframe>
+
+    <!-- 修改 JavaScript 文件的引用路径 -->
+    <script src="{{ url_for('static', filename='web001.js') }}"></script>
+</body>
+</html>

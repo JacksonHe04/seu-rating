@@ -1,5 +1,9 @@
 # 这是一个测试，用于测试提交
 
+import urllib3
+print(urllib3.__version__)
+
+
 def fibonacci(n):
     sequence = []
     a, b = 0, 1

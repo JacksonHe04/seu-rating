@@ -12,6 +12,8 @@ body {
 h1 {
     color: #009eb3;
     text-align: center;
+/* 设置标题距离顶部的距离为20像素 */
+    margin-top: 50px;
 }
 
 /* 为搜索容器添加样式 */
@@ -24,7 +26,7 @@ h1 {
 
     /* 将内水平左右边距设置为80 */
     /* 将内垂直上下边距设置为30 */
-    padding: 30px 80px 30px 80px;
+    padding: 10px 80px 30px 80px;
 
     background-color: #f4f4f4; /* 背景颜色 */
     border: 0 solid #ccc; /* 边框 */
