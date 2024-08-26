@@ -78,15 +78,6 @@
             border-radius: 4px;
             margin-bottom: 10px;
         }
-
-        /* 为#results的表格设计css */
-        /* TODO */
-
-
-        /* 当鼠标悬停在结果集中的链接上时，给链接添加下划线装饰 */
-        #results a:hover {
-            text-decoration: underline;
-        }
     </style>
 </head>
 <body>
@@ -118,7 +109,6 @@
 
 
 <!-- 添加JavaScript代码让后端的搜索结果传入results表格中 -->
-<!-- TODO -->
 <script>
 
     document.getElementById('search-form').addEventListener('submit', function (event) {
@@ -155,20 +145,97 @@
      * 该函数负责将传入的数据解析并显示在页面上此函数预期作为处理异步请求响应的一部分，它应该在数据获取后调用，
      * @param {Object} data - 包含要显示的结果数据的对象具体结构和内容类型取决于数据源和应用需求
      */
+    // function displayResults(data) {
+    //     <!-- 获取搜索结果的div元素，用于后续操作 -->
+    //     const resultsDiv = document.getElementById('results');
+    //
+    //
+    //
+    //     // 根据data更新resultsDiv的内容
+    //     // 例如，如果data包含音乐类型，可以这样显示：
+    //     // resultsDiv.innerHTML += '<p>艺术家: ' + artistName + '</p>';
+    //     // 展示艺术家名称
+    //     if (data['艺术家名称']) {
+    //         resultsDiv.innerHTML += '<p>艺术家: ' + data['艺术家名称'] + '</p>';
+    //     }
+    //     if (data['音乐类型']) {
+    //         resultsDiv.innerHTML += '<p>音乐类型: ' + data['音乐类型'] + '</p>';
+    //     }
+    //     // 可以添加更多的逻辑来显示其他信息，比如艺术家的国籍
+    //     if (data['出道地点']) {
+    //         resultsDiv.innerHTML += '<p>活跃地点: ' + data['出道地点'] + '</p>';
+    //     }
+    //     // 展示活跃年代
+    //     if (data['活跃年代']) {
+    //         resultsDiv.innerHTML += '<p>活跃年代: ' + data['活跃年代'] + '</p>';
+    //     }
+    //
+    //     // 展示唱片公司
+    //     if (data['唱片公司']) {
+    //         resultsDiv.innerHTML += '<p>唱片公司: ' + data['唱片公司'] + '</p>';
+    //     }
+    //     // 展示网站
+    //     if (data['网站']) {
+    //         resultsDiv.innerHTML += '<p>网站: ' + data['网站'] + '</p>';
+    //     }
+    // }
+
+
     function displayResults(data) {
-        <!-- 获取搜索结果的div元素，用于后续操作 -->
-        const resultsDiv = document.getElementById('results');
-        // 根据data更新resultsDiv的内容
-        // 例如，如果data包含音乐类型，可以这样显示：
-        // resultsDiv.innerHTML += '<p>艺术家: ' + artistName + '</p>';
-        if (data['音乐类型']) {
-            resultsDiv.innerHTML += '<p>音乐类型: ' + data['音乐类型'] + '</p>';
+    // 获取搜索结果的div元素，用于后续操作
+    const resultsDiv = document.getElementById('results');
+
+    // 创建表格元素
+    const table = document.createElement('table');
+    table.style.width = '100%'; // 设置表格宽度为100%
+    table.setAttribute('border', '1'); // 添加边框
+    // 定义展示顺序
+
+    // 创建表格头部
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+
+    // 定义表头内容
+    const headers = ['标签', '内容'];
+    headers.forEach(headerText => {
+        const th = document.createElement('th');
+        th.appendChild(document.createTextNode(headerText));
+        headerRow.appendChild(th);
+    });
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    // 创建表格主体
+    const tbody = document.createElement('tbody');
+
+// 定义显示顺序的字段列表
+    const fieldsOrder = ['艺术家名称', '音乐类型', '出道地点', '活跃年代', '唱片公司', '网站'];
+
+    // 根据fieldsOrder数组生成表格行
+    fieldsOrder.forEach(key => {
+        if (data[key]) {
+            const row = document.createElement('tr');
+
+            // 创建字段列
+            const cellKey = document.createElement('td');
+            cellKey.appendChild(document.createTextNode(key));
+            row.appendChild(cellKey);
+
+            // 创建内容列
+            const cellValue = document.createElement('td');
+            cellValue.appendChild(document.createTextNode(data[key]));
+            row.appendChild(cellValue);
+
+            // 将这一行添加到tbody中
+            tbody.appendChild(row);
         }
-        // 可以添加更多的逻辑来显示其他信息，比如艺术家的国籍
-        if (data['出道地点']) {
-            resultsDiv.innerHTML += '<p>活跃地点: ' + data['出道地点'] + '</p>';
-        }
-    }
+    });
+
+
+    table.appendChild(tbody);
+    resultsDiv.appendChild(table); // 将表格添加到resultsDiv中
+}
 
 </script>
 

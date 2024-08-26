@@ -119,7 +119,40 @@
 
 
 <!-- 添加JavaScript代码 -->
+<script>
+    document.getElementById('search-form').addEventListener('submit', function (event) {
+        event.preventDefault(); // 阻止表单默认提交行为
 
+        const questionInput = document.getElementById('question');
+        const question = questionInput.value.trim();
+
+        if (question === '') {
+            alert('请输入查询内容！');
+            return;
+        }
+
+        // 显示加载提示
+        const resultsDiv = document.getElementById('results');
+        resultsDiv.innerHTML = '<p>正在加载...</p>';
+
+        fetch('/get_artist_info', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: `question=${encodeURIComponent(question)}`
+        })
+            .then(response => response.text())
+            .then(html => {
+                // 清除加载提示并显示结果
+                resultsDiv.innerHTML = html;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                resultsDiv.innerHTML = '<p>发生错误，请稍后再试。</p>';
+            });
+    });
+</script>
 
 
 </body>
