@@ -1,0 +1,177 @@
+<!-- web/static/web001.html -->
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artists Search System</title>
+    <style>
+        /* 设置全局样式，包括字体、背景色、文字颜色和默认的边距及内边距 */
+        body {
+            /* 设置页面的字体和背景颜色，以及基本的布局属性 */
+            font-family: Arial, sans-serif; /* 定义字体为 Arial 或者无衬线字体 */
+            background-color: #f4f4f4; /* 设置背景颜色为浅灰色 (#f4f4f4) */
+            color: #333; /* 设置文本颜色为深灰色 (#333) */
+            margin: 0; /* 移除页面的外边距 */
+            padding: 20px; /* 设置页面的内边距为 20 像素，增加内容区域的视觉空间 */
+        }
+
+        /* 设置标题颜色和居中对齐 */
+        h1 {
+            color: #009eb3;
+            text-align: center;
+            /* 设置标题距离顶部的距离为20像素 */
+            margin-top: 50px;
+        }
+
+        /* 为搜索容器添加样式 */
+        #search-container {
+            /* 设置元素宽度为容器的80% */
+            width: 30%;
+
+            /* 容器宽度要适应页面的宽度，使其居中显示*/
+            margin: 0 auto;
+
+            /* 将内水平左右边距设置为80 */
+            /* 将内垂直上下边距设置为30 */
+            padding: 10px 80px 30px 80px;
+
+            background-color: #f4f4f4; /* 背景颜色 */
+            border: 0 solid #ccc; /* 边框 */
+            border-radius: 50px; /* 圆角 */
+        }
+
+        /* 为表单添加样式 */
+        #search-form {
+            display: flex; /* 使用弹性布局 */
+            flex-direction: column; /* 垂直排列子元素 */
+            align-items: center; /* 水平居中子元素 */
+        }
+
+        /* 为输入框添加样式 */
+        #search-form input[type="text"] {
+            width: 100%; /* 输入框宽度与容器相同 */
+            padding: 20px; /* 内边距 */
+            border: 1px solid #ccc; /* 边框 */
+            border-radius: 50px; /* 圆角 */
+            cursor: default;
+        }
+
+        /* 为提交按钮添加样式 */
+        #search-form input[type="submit"] {
+            padding: 10px 30px; /* 内边距 */
+            background-color: #009eb3; /* 背景颜色 */
+            color: white; /* 文字颜色 */
+            border: none; /* 无边框 */
+            border-radius: 50px; /* 圆角 */
+        }
+
+        #search-form input[type="submit"]:hover {
+            background-color: rgba(0, 158, 179, 0.76); /* 更改背景颜色 */
+        }
+
+        /* 为#results下的div元素设置样式，包括背景色、内边距、边框、圆角和底部外边距 */
+        #results div {
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+
+        /* 为#results的表格设计css */
+        /* TODO */
+
+
+        /* 当鼠标悬停在结果集中的链接上时，给链接添加下划线装饰 */
+        #results a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<!-- 标题 -->
+<h1>Artists Search System</h1>
+
+<!-- 以下为搜索容器，用于用户输入查询条件 -->
+<div id="search-container">
+    <form id="search-form" action="/get_artist_info" method="POST">
+
+        <!-- 让“——歌德”右对齐 -->
+        <label for="question">艺术家对于自然有着双重关系：他既是自然的主宰，又是自然的奴隶。
+            <div style="text-align: right;">——歌德</div>
+        </label><br>
+        <input type="text" id="question" name="question" placeholder="请输入您想了解的艺术家" size="50"
+               required><br><br>
+        <input type="submit" value="搜索">
+    </form>
+</div>
+
+<!--
+#results 的 div 容器用于在页面上展示查询结果或者操作反馈。
+这个元素作为动态内容的容器，通常通过 JavaScript 进行操作和更新，
+以向用户展示从服务器获取的数据或者其他需要呈现的信息。
+-->
+<div id="results"></div>
+<!-- 设计用于展示搜索结果的表格 -->
+<!-- TODO -->
+
+
+<!-- 添加JavaScript代码让后端的搜索结果传入results表格中 -->
+<!-- TODO -->
+<script>
+
+    document.getElementById('search-form').addEventListener('submit', function (event) {
+        event.preventDefault(); // 阻止表单默认提交行为
+
+        // 获取页面上id为artistName的元素的值，即艺术家的名字
+        const artistName = document.getElementById('question').value;
+        if (artistName) {
+            // 为了让用户在第二次及之后的搜索中能够刷新页面再展示新的信息，清空#results容器
+            document.getElementById('results').innerHTML = '';
+        }
+
+        // 使用AJAX发送请求
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', '/get_artist_info', true);
+        <!-- 设置请求头的Content-Type为application/x-www-form-urlencoded，这表明发送给服务器的数据将是一个URL编码的字符串 -->
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function () {
+            if (xhr.status === 200) {
+
+                // 处理返回的JSON数据
+                const result = JSON.parse(xhr.responseText);
+                displayResults(result);
+
+            } else {
+                console.error(xhr.statusText);
+            }
+        };
+        xhr.send('question=' + encodeURIComponent(artistName));
+    });
+
+    /**
+     * 显示结果函数
+     * 该函数负责将传入的数据解析并显示在页面上此函数预期作为处理异步请求响应的一部分，它应该在数据获取后调用，
+     * @param {Object} data - 包含要显示的结果数据的对象具体结构和内容类型取决于数据源和应用需求
+     */
+    function displayResults(data) {
+        <!-- 获取搜索结果的div元素，用于后续操作 -->
+        const resultsDiv = document.getElementById('results');
+        // 根据data更新resultsDiv的内容
+        // 例如，如果data包含音乐类型，可以这样显示：
+        // resultsDiv.innerHTML += '<p>艺术家: ' + artistName + '</p>';
+        if (data['音乐类型']) {
+            resultsDiv.innerHTML += '<p>音乐类型: ' + data['音乐类型'] + '</p>';
+        }
+        // 可以添加更多的逻辑来显示其他信息，比如艺术家的国籍
+        if (data['出道地点']) {
+            resultsDiv.innerHTML += '<p>活跃地点: ' + data['出道地点'] + '</p>';
+        }
+    }
+
+</script>
+
+
+</body>
+</html>
