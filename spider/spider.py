@@ -79,7 +79,7 @@ def get_review(url):
         useful_count,useless_count = review.xpath('./div/div/div[3]/a/span/text()')
         reply_count = review.xpath('/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div/div/div[3]/a[3]')
         reviewsSet.append(item.Review(score = score,user_href=user_href,user_name=user_name\
-        ,useful_count=useful_count.strip(),useless_count=useless_count.strip()))
+        ,useful_count=useful_count.strip(),useless_count=useless_count.strip(),reply_count=reply_count))
     return reviewsSet
 
 def get_info_artist(url):

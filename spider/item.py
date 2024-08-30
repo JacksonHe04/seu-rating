@@ -9,9 +9,10 @@ class Comment:#短评评论
         
 class Review:
     def __init__(self,score = None,user_name = None,user_href = None,\
-        comment_content = None,useful_count = None,useless_count = None) :
+        reply_count = None,useful_count = None,useless_count = None) :
         self.score=score
         self.user_name = user_name
         self.user_href = user_href
         self.useful_count = useful_count #乐评的有用数
         self.useless_count = useless_count#乐评的无用数
+        self.reply_count = reply_count
