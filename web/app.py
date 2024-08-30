@@ -14,7 +14,7 @@ CORS(app)
 def serve_index():
     # send_from_directory函数用于发送指定目录下的文件
     # 将应用的静态资源目录下的web301.html返回给客户端
-    return app.send_static_file('web301.html')
+    return app.send_static_file('index.html')
 
 
 # 定义路由和请求方法，处理通过POST请求访问'/get_artist_info'路径的请求
