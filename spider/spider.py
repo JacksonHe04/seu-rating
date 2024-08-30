@@ -28,13 +28,13 @@ def get_comments(url):
     '''
     tree = etree.HTML(get_text(url,headers=headers))
     num = re.findall('\d+',tree.xpath('/html/body/div[3]/div[1]/div/div[1]/div/div[1]/ul/li[1]/span/text()')[0])
-    pages = [page for page in range(0,40,20)]
+    pages = [page for page in range(0,int(num),20)]
     urls = get_urls(url,pages)
     CommentSet = []
     with ThreadPoolExecutor(10) as Threads:
         for url in urls:
             _commentSet = Threads.submit(get_comment,url)
-            CommentSet.append(_commentSet.result()[::])
+            CommentSet.extend(_commentSet.result()[::])
     return CommentSet
             
 
@@ -46,12 +46,12 @@ def get_comment(url):
     CommentSet=[]
     for comment in comments:
         score = re.findall('\d+',comment.xpath('./h3/span[2]/span[1]/@class')[0])
-        user_name = comment.xpath('./h3/span[2]/a/text()')
-        user_href = comment.xpath('./h3/span[2]/a/@href')
-        comment_content = comment.xpath('./p/span/text()')
-        vote_count = comment.xpath('./h3/span[1]/text()')
+        user_name = comment.xpath('./h3/span[2]/a/text()')[0]
+        user_href = comment.xpath('./h3/span[2]/a/@href')[0]
+        comment_length = len(comment.xpath('./p/span/text()'))
+        vote_count = comment.xpath('./h3/span[1]/text()')[0]
         CommentSet.append(item.Comment(score = score,user_name = user_name,user_href = user_href,\
-            comment_content = comment_content,vote_count=vote_count))
+            comment_length=comment_length,vote_count=vote_count))
     return CommentSet
 
 def get_reviews(url):
@@ -64,19 +64,20 @@ def get_reviews(url):
     with ThreadPoolExecutor(10) as Threads:
         for url in urls:
             _reviewSet = Threads.submit(get_review,url)
-            ReviewSet.append(_reviewSet)
+            ReviewSet.extend(_reviewSet)
     return ReviewSet
 
 def get_review(url):
     '''未完成'''
     tree = etree.HTML(get_text(url,headers))
-    reviews = tree.xpath('')
+    reviews = tree.xpath('//*[@id="content"]/div/div[1]/div[1]')
     reviewsSet = []
     for review in reviews:
         score = re.findall('\d+',review.xpath('./div/header/span[1]/@class')[0])
-        user_href = review.xpath('./div/header/a[2]/@href')
-        user_name = review.xpath('./div/header/a[2]/text()')
+        user_href = review.xpath('./div/header/a[2]/@href')[0]
+        user_name = review.xpath('./div/header/a[2]/text()')[0]
         useful_count,useless_count = review.xpath('./div/div/div[3]/a/span/text()')
+        reply_count = review.xpath('/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div/div/div[3]/a[3]')
         reviewsSet.append(item.Review(score = score,user_href=user_href,user_name=user_name\
         ,useful_count=useful_count.strip(),useless_count=useless_count.strip()))
     return reviewsSet
@@ -97,4 +98,3 @@ def get_urls(url,pages):
 def  get_all_data(urls):
     '''未完成'''
     pass
-
