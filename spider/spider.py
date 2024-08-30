@@ -70,14 +70,14 @@ def get_reviews(url):
 def get_review(url):
     '''未完成'''
     tree = etree.HTML(get_text(url,headers))
-    reviews = tree.xpath('//*[@id="content"]/div/div[1]/div[1]')
+    reviews = tree.xpath('//*[@id="content"]/div/div[1]/div[1]/div')
     reviewsSet = []
     for review in reviews:
         score = re.findall('\d+',review.xpath('./div/header/span[1]/@class')[0])
         user_href = review.xpath('./div/header/a[2]/@href')[0]
         user_name = review.xpath('./div/header/a[2]/text()')[0]
         useful_count,useless_count = review.xpath('./div/div/div[3]/a/span/text()')
-        reply_count = review.xpath('/html/body/div[3]/div[1]/div/div[1]/div[1]/div[1]/div/div/div[3]/a[3]')
+        reply_count = re.findall("\d+",review.xpath('./div/div/div[3]/a[3]/text()')[0])[0]
         reviewsSet.append(item.Review(score = score,user_href=user_href,user_name=user_name\
         ,useful_count=useful_count.strip(),useless_count=useless_count.strip(),reply_count=reply_count))
     return reviewsSet
