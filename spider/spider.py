@@ -76,13 +76,14 @@ def get_review(url):
         score = re.findall('\d+',review.xpath('./div/header/span[1]/@class')[0])
         user_href = review.xpath('./div/header/a[2]/@href')
         user_name = review.xpath('./div/header/a[2]/text()')
-        comment_content = ''
         useful_count,useless_count = review.xpath('./div/div/div[3]/a/span/text()')
-        reviewsSet.append(item.Review(score = score,user_href=user_href,user_name=user_name,\
-            comment_content=comment_content,useful_count=useful_count.strip(),useless_count=useless_count.strip()))
+        reviewsSet.append(item.Review(score = score,user_href=user_href,user_name=user_name\
+        ,useful_count=useful_count.strip(),useless_count=useless_count.strip()))
     return reviewsSet
 
-def get_info_artist():
+def get_info_artist(url):
+    
+    
     pass
 
 def get_urls(url,pages):
