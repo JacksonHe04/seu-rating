@@ -69,7 +69,6 @@ def album_result(request):
 
     if not album:
         return render(request, 'smrWeb/album_result.html', {'error_message': '专辑未找到'})
-
     # 输出 album 元组以确认数据格式
     print(f"Album: {album}")
 
