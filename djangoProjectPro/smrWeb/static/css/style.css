@@ -372,6 +372,7 @@ button {
     text-align: left;
     /* 在输入框的左边内边距设置为40px，增加输入的舒适度 */
     padding-left: 40px;
+    padding-top: 5px;
     /* 设置输入框的高度为50px */
     height: 50px;
     /* 设置输入框的边框为0，去除默认边框 */
@@ -389,21 +390,13 @@ button {
     width: 30%;
     background-color: #502d11;
     float: right;
-    padding: 9px 14px;
+    padding: 6px 14px;
     color: #fff;
     height: 50px;
-    font-size: 16px;
+    font-size: 24px;
     border-top-right-radius: 50px;
     border-bottom-right-radius: 50px;
     opacity: 0.9;
-}
-
-/* 设置搜索按钮内链接的颜色 */
-.search_bt a {
-    color: #ffffff;
-    /* 设置链接的字体大小 */
-    font-size: 20px;
-    /*  加粗 */
     font-weight: bold;
 }
 
@@ -1041,13 +1034,13 @@ figure:hover + span {
 .musician_item {
     width: 100%;
     float: left;
-    margin-top: -50px;
+    margin-top: -60px;
 }
 
 .musician_result_section {
     width: 100%;
     float: left;
-    margin-top: -30px;
+    margin-top: -60px;
 }
 
 .musician_5 {
@@ -1102,7 +1095,15 @@ figure:hover + span {
 }
 
 .album_row_img {
-    margin-left: -5px;
+    margin-left: 10px;
+    height: 120px;
+    width: 120px;
+}
+
+.album_row_img img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover; /* 或者使用其他值 */
 }
 
 .album_num {

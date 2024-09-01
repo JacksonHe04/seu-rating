@@ -77,8 +77,15 @@ WSGI_APPLICATION = "djangoProjectPro.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": 'smr_database',
+        'USER': 'root',
+        'PASSWORD': 'vsmvpvp10MS',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        'OPTIONS': {
+            'charset': 'utf8mb4',  # 确保使用支持中文的字符集
+        },
     }
 }
 

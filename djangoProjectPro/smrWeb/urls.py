@@ -27,4 +27,6 @@ urlpatterns = [
     # album_result
     path('albumresult/', views.album_result, name='album_result'),
 
+
+
 ]

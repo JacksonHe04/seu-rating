@@ -15,7 +15,7 @@
     <!-- 防止用户在移动设备上缩放页面，提供一致的视觉体验 -->
     <!-- site metas -->
     <!-- 用于设置网站的元信息，如作者、关键词等，有助于SEO和社交媒体分享 -->
-
+    
     <!-- 网页标题 -->
     <title>{% block title %}SEU Music Rating{% endblock %}</title>
     <!-- 设置关键词，有助于SEO优化 -->
@@ -24,7 +24,7 @@
     <meta name="description" content=""/>
     <!-- 指明作者信息 -->
     <meta name="author" content=""/>
-
+    
     {% load static %}
     <!-- css-->
     <!-- 引入Bootstrap框架的CSS样式，用于页面基本样式和响应式设计 -->
@@ -45,7 +45,7 @@
     <link rel="stylesoeet" href="../../static/css/owl.theme.default.min.css"/>
     <!-- 引入Fancybox插件的CSS样式，用于页面中图片、视频等的灯箱效果 -->
     <link rel="stylesheet" href="../../static/css/jquery.fancybox.min.css" media="screen"/>
-
+    
     <!-- 背景 -->
     <style type="text/css">
         body {
@@ -65,18 +65,6 @@
     <a class="logo" href="/home"
     ><img src="../../static/images/seuLogo2.jpeg" alt="SeuLogo" class="seuLogo"
     /></a>
-
-    <!-- 导航栏切换按钮，用于在小屏幕设备上展开或收起导航菜单 -->
-    <!--
-    导航栏切换按钮
-    类名"navbar-toggler"用于样式和功能的识别
-    "type"属性指定按钮类型为"button"，避免表单提交行为
-    "data-toggle"属性指定这个按钮触发的事件是"collapse"，用于折叠展开面板
-    "data-target"属性指定了折叠面板的ID，以便正确控制其显示和隐藏
-    "aria-controls"属性用于ARIA（Accessible Rich Internet Applications）标签，提高可访问性，作用同"data-target"
-    "aria-expanded"属性表示切换按钮的初始状态，"false"表示面板是展开的
-    "aria-label"属性提供了可访问性的标签描述，"Toggle navigation"表示导航切换
-    -->
     <button
             class="navbar-toggler"
             type="button"
@@ -88,7 +76,7 @@
     >
         <span class="navbar-toggler-icon"></span>
     </button>
-
+    
     <!-- 此处开始定义导航栏的折叠行为和样式 -->
     <div class="collapse navbar-collapse" id="navbarNav">
         <!-- 导航栏的无序列表 -->
@@ -124,7 +112,7 @@
     <!-- 容器，用于更好地控制内层内容的排列和布局 -->
     {% block new_container %}
     <div class="container">
-
+        
         {% block bestTitleDiv %}
         <!-- 主标题，强调网站提供的最佳求职搜索功能 -->
         <h1 class="bestTitle">
@@ -133,22 +121,22 @@
             {% endblock %}
         </h1>
         {% endblock %}
-
+        
         <!-- 搜索和搜索区域的主要容器 -->
         {% block search_musician %}
-        <div class="box_main">
-            <!-- 可输入框，允许用户输入以搜索工作, HtmlFormInputWithoutLabel, HtmlFormInputWithoutLabel -->
-            <!--suppress HtmlFormInputWithoutLabel, HtmlFormInputWithoutLabel, HtmlFormInputWithoutLabel -->
-            <input
-                    type="text"
-                    class="artist_bt"
-                    placeholder="请输入你想了解的音乐人"
-                    name=""
-                    required
-            />
-            <!-- 搜索按钮，引导用户搜索服务 -->
-            <button class="search_bt"><a href="/musicianresult">搜 索</a></button>
-        </div>
+        <form action="/musicianresult" method="get">
+            <div class="box_main">
+                <!-- 可输入框，允许用户输入以搜索工作 -->
+                <input
+                        type="text"
+                        class="artist_bt"
+                        placeholder="请输入你想了解的音乐人"
+                        name="query"
+                        required />
+                <button type="submit" class="search_bt">搜 索</button>
+            </div>
+        </form>
+        
         <!-- 解释性文字，向用户介绍该搜索引擎的功能 -->
         <p class="there_text">
             你可以通过输入音乐人的名称，了解TA的相关信息以及TA最好的音乐作品
