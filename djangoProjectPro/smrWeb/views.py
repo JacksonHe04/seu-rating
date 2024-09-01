@@ -28,7 +28,7 @@ def log_check(request):
         return render(request, 'smrWeb/log_in.html')
 
 
-# album_page
+# albums_page
 def albums_page(request):
     return render(request, 'smrWeb/albums_page.html')
 
@@ -38,9 +38,9 @@ def search_music(request):
     return render(request, 'smrWeb/search_music.html')
 
 
-# musician_page
-def musician_page(request):
-    return render(request, 'smrWeb/musician_page.html')
+# musicians_page
+def musicians_page(request):
+    return render(request, 'smrWeb/musicians_page.html')
 
 
 # service_page
@@ -53,6 +53,10 @@ def about_page(request):
     return render(request, 'smrWeb/about_page.html')
 
 
-# result1
+# musicain_result
 def musician_result(request):
     return render(request, 'smrWeb/musician_result.html')
+
+# album_result
+def album_result(request):
+    return render(request, 'smrWeb/album_result.html')

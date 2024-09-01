@@ -15,15 +15,15 @@
 /* 设置所有元素的盒模型为边框框模型，并且强制优先级高于其他样式 */
 * {
     /*
-          设置元素的盒模型为border-box
-          这意味着元素的宽度和高度包括了padding和border，而不是只包括内容区域
-          使用!important确保在有其他样式覆盖时，本样式仍然生效
-       */
+            设置元素的盒模型为border-box
+            这意味着元素的宽度和高度包括了padding和border，而不是只包括内容区域
+            使用!important确保在有其他样式覆盖时，本样式仍然生效
+         */
     box-sizing: border-box !important;
     /*
-        * 设置所有属性的过渡效果，平滑变换持续0.5秒
-        * 使用ease缓动函数，初始速度慢，逐渐加快，最后变慢，提供更自然的视觉效果
-        */
+          * 设置所有属性的过渡效果，平滑变换持续0.5秒
+          * 使用ease缓动函数，初始速度慢，逐渐加快，最后变慢，提供更自然的视觉效果
+          */
     transition: ease all 0.5s;
 }
 
@@ -36,8 +36,7 @@ html {
 body {
     background-repeat: repeat-y;
     /* 可选属性，用于控制图片如何覆盖整个区域 */
-/ / 设置背景图片的大小，宽度为容器宽度的100 % ，高度自动调整以保持图片的宽高比 background-size: 100 % auto;
-
+    /*/ / 设置背景图片的大小，宽度为容器宽度的100 % ，高度自动调整以保持图片的宽高比 background-size: 100 % auto;*/
 
     /* 定义文本颜色为深灰色，增加可读性 */
     color: #111111;
@@ -178,14 +177,13 @@ a {
 /* 继承链接样式到.btn类，并添加平滑过渡效果 */
 a,
 .btn {
-/ / 确保文本装饰在任何情况下都保持不变，提高用户交互体验 text-decoration: none !important;
-/ / 移除聚焦轮廓，以自定义样式高亮链接，提升视觉效果 outline: none !important;
-/ / 使用webkit内核的平滑过渡效果，确保变换的流畅性 -webkit-transition: all 0.3 s ease-in-out;
-/ / 确保在Mozila Firefox中的过渡效果同样平滑 -moz-transition: all 0.3 s ease-in-out;
-/ / 为Microsoft Edge浏览器提供兼容的过渡效果 -ms-transition: all 0.3 s ease-in-out;
-/ / Opera浏览器的过渡效果设置，确保兼容性 -o-transition: all 0.3 s ease-in-out;
-/ / 标准的过渡效果设置，适用于大多数现代浏览器 transition: all 0.3 s ease-in-out;
-
+    /*/ / 确保文本装饰在任何情况下都保持不变，提高用户交互体验 text-decoration: none !important;*/
+    /*/ / 移除聚焦轮廓，以自定义样式高亮链接，提升视觉效果 outline: none !important;*/
+    /*/ / 使用webkit内核的平滑过渡效果，确保变换的流畅性 -webkit-transition: all 0.3 s ease-in-out;*/
+    /*/ / 确保在Mozila Firefox中的过渡效果同样平滑 -moz-transition: all 0.3 s ease-in-out;*/
+    /*/ / 为Microsoft Edge浏览器提供兼容的过渡效果 -ms-transition: all 0.3 s ease-in-out;*/
+    /*/ / Opera浏览器的过渡效果设置，确保兼容性 -o-transition: all 0.3 s ease-in-out;*/
+    /*/ / 标准的过渡效果设置，适用于大多数现代浏览器 transition: all 0.3 s ease-in-out;*/
 }
 
 /* 确保图片在容器中按比例缩放，保持宽高比 */
@@ -344,7 +342,6 @@ button {
     background-size: cover;
 }
 
-
 /* 设置最佳标题的样式和对齐方式 */
 .bestTitle {
     width: 100%;
@@ -414,7 +411,6 @@ button {
 .search_bt:hover {
     background-color: #ef852f;
 }
-
 
 .box_main {
     width: 50%;
@@ -494,7 +490,6 @@ button {
     float: right;
 }
 
-
 .image_1 {
     width: 90%;
     height: 100%;
@@ -513,6 +508,22 @@ button {
     display: flex;
     flex-direction: column;
     background-color: rgba(255, 255, 255, 0.5); /* 背景颜色为白色，透明度为0.7 */
+    padding: 40px; /* 添加内边距以美化文本布局 */
+    border-radius: 30px; /* 圆角效果，可选 */
+    /* 让这一部分与垂直旁边的图片等高对齐 */
+    justify-content: center;
+    align-items: center;
+}
+
+.musician_wrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(
+            255,
+            255,
+            255,
+            0.5
+    ) !important; /* 背景颜色为白色，透明度为0.7 */
     padding: 40px; /* 添加内边距以美化文本布局 */
     border-radius: 30px; /* 圆角效果，可选 */
     /* 让这一部分与垂直旁边的图片等高对齐 */
@@ -883,7 +894,6 @@ h2 span {
     /*padding-bottom: 60px;*/
 }
 
-
 .column::after {
     content: "";
     clear: both;
@@ -995,7 +1005,6 @@ figure:hover + span {
     transition: 0.3s ease-in-out;
     /* 设置背景颜色为半透明的深灰色 */
     background-color: rgba(27, 27, 27, 0.35);
-
 }
 
 .hover03 figure:hover img {
@@ -1028,61 +1037,148 @@ figure:hover + span {
     text-align: center;
 }
 
-/* 第二个服务部分的样式，覆盖整个宽度并左浮动 */
-.services_section_2 {
+/* 以下为 musician_result.html 的 css */
+.musician_item {
     width: 100%;
     float: left;
+    margin-top: -50px;
 }
 
-/* 服务项目样式，覆盖整个宽度并左浮动，顶部有较大的外边距 */
-.services_item {
+.musician_result_section {
     width: 100%;
     float: left;
-    margin-top: 80px;
+    margin-top: -30px;
 }
 
-/* 服务1部分的样式，覆盖整个宽度并左浮动，文本居中对齐 */
-.services_1 {
-    width: 100%;
+.musician_5 {
+    padding-right: 50px;
+}
+
+.musician_title {
+    font-size: 50px;
+    margin-left: 15px;
+    margin-bottom: 30px;
+    color: #d6cec3;
+    text-shadow: 1px 1px 3px #000000;
+}
+
+.musician_img {
     float: left;
     text-align: center;
+    height: auto;
 }
 
-/* 定义工作部分的主要样式，覆盖整个宽度，左浮动，较大字号，居中对齐，黑色字体，顶部内边距 */
-.jobs_main {
+.musician_info {
+    width: 100%;
+    font-size: 13px;
+    text-align: left;
+    background-color: rgba(234, 230, 227, 0.63);
+    margin-left: 0px;
+    padding: 10px;
+}
+
+.musician_intro {
+    width: 100%;
+    font-size: 13px;
+    text-align: left;
+    background-color: rgba(234, 230, 227, 0.63);
+    margin-left: 0px;
+    padding: 10px;
+}
+
+.album_row {
+    padding-bottom: 20px;
+}
+
+.album_row_wrapper {
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(255, 255, 255, 0.5); /* 背景颜色为白色，透明度为0.7 */
+    padding: 0px 5px; /* 添加内边距以美化文本布局 */
+    border-radius: 30px; /* 圆角效果，可选 */
+    /* 让这一部分与垂直旁边的图片等高对齐 */
+    justify-content: center;
+    align-items: center;
+}
+
+.album_row_img {
+    margin-left: -5px;
+}
+
+.album_num {
     width: 100%;
     float: left;
-    font-size: 26px;
-    text-align: center;
-    color: #000;
-    padding-top: 20px;
+    font-size: 50px;
+    text-align: left;
+    padding-top: 30px;
+    /* 设置文字阴影，水平偏移10px，垂直偏移10px */
+    /* 模糊半径10px，颜色为黑色*/
+    text-shadow: 2px 2px 10px #000000;
+    color: #ffffff;
+    /* 加粗 */
+    font-weight: bold;
 }
 
-/* 定义多种主要样式的部分，宽度占88%，左浮动，较小字号，居中对齐，黑色字体，顶部外边距为0 */
-.many_main {
-    width: 88%;
+.album_main {
+    width: 100%;
     float: left;
-    font-size: 12px;
-    text-align: center;
-    color: #000;
-    margin-top: 0;
+    font-size: 30px;
+    text-align: left;
+    padding-top: 30px;
+    /* 为元素添加一个底部边框，增强视觉效果 */
+    border-bottom: 5px solid rgba(221, 136, 63, 0.44);
+    /* 设置文字阴影，水平偏移10px，垂直偏移10px */
+    /* 模糊半径10px，颜色为黑色*/
+    text-shadow: 2px 2px 10px #000000;
+    color: #ffffff;
+    /* 加粗 */
+    font-weight: bold;
 }
 
-/* 定义加入按钮的样式 */
-.join_bt {
-    width: 55%;
-    margin: 0 auto;
-    text-align: center;
+.ranking_main1 {
+    width: 100%;
+    font-size: 20px;
+    text-align: left;
+    color: #231f15;
+    margin-left: 5px;
+    margin-top: 10px;
 }
 
-/* 定义加入文本的容器样式 */
-.join_text {
+.ranking_main2 {
+    width: 100%;
+    font-size: 50px;
+    text-align: left;
+    color: #ffffff;
+    text-shadow: 1px 1px 3px #000000;
+    margin-left: -2px;
+    margin-top: 23px;
+}
+
+.ranking_main3 {
+    width: 100%;
+    font-size: 15px;
+    text-align: left;
+    color: #231f15;
+    margin-left: -40px;
+    margin-top: 33px;
+}
+
+.album_in_bt {
+    width: 100%;
+    margin: 15px auto;
+    text-align: center;
+    font-size: 18px; /* 设置字体大小为18像素，使按钮文本清晰可见 */
+    color: #ffffff; /* 设置文本颜色为白色，确保按钮文本在背景上的可见性 */
+    height: 50px; /* 按钮高度为50像素，确保按钮大小适中 */
+    border-radius: 50px; /* 圆角半径为30像素，使按钮边缘平滑，增加友好感 */
+}
+
+.album_in_text {
     width: 100%;
     float: left;
 }
 
-/* 定义加入链接的样式 */
-.join_text a {
+.album_in_text a {
     width: 100%;
     float: left;
     background-color: #000;
@@ -1090,19 +1186,242 @@ figure:hover + span {
     text-align: center;
     padding: 10px;
     color: #ffffff;
+    background-color: rgba(
+            158,
+            92,
+            33,
+            0.73
+    ); /* 设置背景颜色为一种蓝色，用于按钮的视觉识别 */
+    height: 50px; /* 按钮高度为50像素，确保按钮大小适中 */
+    border-radius: 50px; /* 圆角半径为30像素，使按钮边缘平滑，增加友好感 */
 }
 
-/* 定义加入链接悬停时的样式 */
-.join_text a:hover {
+.album_in_text a:hover {
     color: #fff;
-    background-color: #cf7328;
+    background-color: #e4771e;
 }
 
-/* 定义登录部分的样式 */
+/* 以下为 album_result.html 的 css */
+.album_result_section {
+    width: 100%;
+    float: left;
+    margin-top: -30px;
+}
+
+.album_result_container {
+    width: 100%;
+    padding-right: 40px;
+    padding-left: 40px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.album_result_img {
+    float: left;
+    /*text-align: center;*/
+    height: 300px;
+    margin-top: 0px;
+}
+
+.album_result_img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* 或者使用其他值 */
+}
+
+.gen_wrapper {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 30px;
+}
+
+.album_intro {
+    width: 100%;
+    margin-top: 348px;
+    height: 200px;
+}
+
+.album_intro_text {
+    margin: 0;
+    width: 100%;
+    font-size: 13px;
+    text-align: left;
+    padding: 5px 30px;
+    white-space: pre-line;
+}
+
+.album_title_div {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.album_title {
+    font-size: 50px;
+    color: #d6cec3;
+    text-shadow: 1px 1px 3px #000000;
+    display: flex;
+    flex-direction: column;
+}
+
+.album_title > span {
+    font-size: x-large;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.album_rating {
+    height: 300px;
+    margin: 48px 0 0 0;
+    align-items: center;
+    justify-content: center;
+}
+
+.rating_wrapper {
+    background-color: rgba(112, 110, 110, 0.5);
+    border-radius: 30px;
+}
+
+.rating_double {
+    width: 100%;
+    height: 280px;
+}
+
+.seu_rating {
+    width: 100%;
+    height: 134px;
+    margin: 0px 0px 0 0;
+    align-items: center;
+}
+
+.db_rating {
+    width: 100%;
+    height: 134px;
+    margin: 12px 0px 0 0;
+    align-items: center;
+}
+
+.seu_rating_title {
+    padding-left: 5px;
+}
+
+.seu_rating_title p {
+    width: 100%;
+    font-size: 30px;
+}
+
+.db_rating_title {
+    padding-left: 20px;
+    padding-top: 10px;
+}
+
+.db_rating_title p {
+    width: 100%;
+    font-size: 20px;
+}
+
+.seu_rating_score {
+    width: 100%;
+    padding-left: 0;
+}
+
+.rating_score {
+    width: 100%;
+    font-size: 70px;
+    text-align: left;
+    margin-left: -5px;
+    margin-top: 23px;
+}
+
+.seu_rating .rating_score {
+    text-shadow: 2px 2px 10px #000000;
+    color: #ffffff;
+    /* 加粗 */
+    font-weight: bold;
+}
+
+.db_rating .rating_score {
+    color: #fff;
+    text-shadow: 1px 1px 3px #000000;
+    font-weight: bold;
+}
+
+.album_da_div {
+    width: 100%;
+    height: 280px;
+}
+
+.album_data {
+    width: 100%;
+    height: 134px;
+    margin: 0px 0px 0 0;
+    padding-top: 15px;
+}
+
+.data_source_text {
+    margin-top: 0;
+    text-shadow: 2px 2px 10px #000000;
+    color: #ffffff;
+    /* 加粗 */
+    /*font-weight: bold;*/
+    font-size: 12px;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.album_analysis {
+    width: 100%;
+    height: 134px;
+    margin: 12px 0px 0 0;
+    padding-top: 5px;
+}
+
+.data_analysis_text {
+    margin-top: 0;
+    text-shadow: 2px 2px 10px #000000;
+    color: #ffffff;
+    /* 加粗 */
+    /*font-weight: bold;*/
+    font-size: 12px;
+    /* 行间距 */
+    line-height: 1.7;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+
+.rating_percent {
+    font-size: 30px;
+}
+
+.album_disc {
+    height: 548px;
+}
+
+.album_disc_title {
+    font-size: 30px;
+    color: #d6cec3;
+    text-shadow: 1px 1px 3px #000000;
+    display: flex;
+    padding-top: 30px;
+    padding-left: 40px;
+}
+
+.album_disc_text {
+    margin-top: -35px;
+    width: 100%;
+    font-size: 24px;
+    text-align: left;
+    padding: 0 20px;
+    white-space: pre-line;
+    /* 增加行间距 */
+    line-height: 1.6;
+}
+
+/* 以下为 log_in.html 的 css */
 .login_section {
     width: 100%;
     float: left;
-    margin-top: 25px;
+    margin-top: -50px;
 }
 
 /* 定义输入元素的内边距变量 */
@@ -1186,7 +1505,7 @@ figure:hover + span {
     display: block;
     width: 100%;
     margin-bottom: 0;
-/ / 设置行高为1 .5 倍，以增加段落文本的可读性和美观性 line-height: 1.5;
+    /*/ / 设置行高为1 .5 倍，以增加段落文本的可读性和美观性 line-height: 1.5;*/
     color: #a6a098;
     font-size: 20px;
     /* 设置元素边框为1像素的实心透明边框 */
@@ -1201,22 +1520,24 @@ figure:hover + span {
 }
 
 /* 以下代码确保在不同浏览器的占位符中实现一致的透明效果 */
-.form-label-group input:-ms-input-placeholder { /* 针对IE10浏览器的占位符 */
+.form-label-group input:-ms-input-placeholder {
+    /* 针对IE10浏览器的占位符 */
     color: transparent; /* 设置IE10占位符文字颜色为透明 */
 }
 
-.form-label-group input::-ms-input-placeholder { /* 针对IE11和Edge浏览器的占位符 */
+.form-label-group input::-ms-input-placeholder {
+    /* 针对IE11和Edge浏览器的占位符 */
     color: transparent; /* 设置IE11和Edge占位符文字颜色为透明 */
 }
 
-.form-label-group input::-moz-placeholder { /* 针对Firefox浏览器的占位符 */
+.form-label-group input::-moz-placeholder {
+    /* 针对Firefox浏览器的占位符 */
     color: transparent; /* 设置Firefox占位符文字颜色为透明 */
 }
 
 .form-label-group input::placeholder {
     color: transparent;
 }
-
 
 /* 当输入框不显示占位符时调整内边距 */
 .form-label-group input:not(:placeholder-shown) {
@@ -1237,7 +1558,6 @@ figure:hover + span {
     /* 改变颜色为深灰色，以视觉上区分标签的默认状态与激活状态 */
     color: #777;
 }
-
 
 /* Edge浏览器兼容样式 */
 @supports (-ms-ime-align: auto) {
@@ -1415,13 +1735,19 @@ input.btn_main_3::placeholder {
     padding-top: 30px; /* 顶部内边距为30像素，用于元素间的垂直间距 */
 }
 
+/* view_now */
 /* 定义“查看评分”按钮的样式 */
 .view_now {
     width: 100%; /* 按钮宽度占据父容器的全部宽度 */
     float: left; /* 使元素在左侧浮动，用于布局 */
     font-size: 18px; /* 设置字体大小为18像素，使按钮文本清晰可见 */
     color: #ffffff; /* 设置文本颜色为白色，确保按钮文本在背景上的可见性 */
-    background-color: rgba(221, 136, 63, 0.56); /* 设置背景颜色为一种蓝色，用于按钮的视觉识别 */
+    background-color: rgba(
+            221,
+            136,
+            63,
+            0.56
+    ); /* 设置背景颜色为一种蓝色，用于按钮的视觉识别 */
     height: 50px; /* 按钮高度为50像素，确保按钮大小适中 */
     border-radius: 50px; /* 圆角半径为30像素，使按钮边缘平滑，增加友好感 */
     margin-top: 20px; /* 顶部边距为20像素，用于按钮与上一元素间的间距 */
@@ -1432,11 +1758,9 @@ input.btn_main_3::placeholder {
     background-color: #dd883f;
 }
 
-.col-sm-2 .view_now {
-    /* 特定样式 */
-    background-color: #ff0000;
-    color: #ffffff;
+/*.col-sm-2 .view_now {*/
+/*    !* 特定样式 *!*/
+/*    background-color: #ff0000;*/
+/*    color: #ffffff;*/
 
-}
-
-
+/*}*/

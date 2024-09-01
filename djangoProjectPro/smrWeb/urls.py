@@ -13,7 +13,7 @@ urlpatterns = [
     # search_music
     path('searchmusic/', views.search_music, name='search_music'),
     # musician
-    path('musician/', views.musician_page, name='musician'),
+    path('musicians/', views.musicians_page, name='musicians'),
     # service_page
     path('help/', views.help_page, name='help'),
     # more_page
@@ -23,5 +23,8 @@ urlpatterns = [
 
     # musician_result
     path('musicianresult/', views.musician_result, name='musician_result'),
+
+    # album_result
+    path('albumresult/', views.album_result, name='album_result'),
 
 ]

@@ -171,7 +171,7 @@ width: 30%;
 .musicians_text { width: 50%; }
 .column { margin: 0px; }
 .column div { width: 22%; }
-.jobs_main { font-size: 24px; }
+.album_main { font-size: 24px; }
 
 
 }
@@ -236,7 +236,7 @@ width: 30%;
 .musicians_text { width: 66%; }
 .column div { margin:0px; width: 272px;}
 .column { margin:0px;}
-.join_text { margin-bottom: 40px; }
+.album_in_text { margin-bottom: 40px; }
 figure { margin-left: 74px; }
 .main { width: 100%;}
 
@@ -311,7 +311,7 @@ padding: 126px 40px;
 .find_bt { width: 30%; }
 
 .column { margin:0px;}
-.join_text { margin-bottom: 40px; }
+.album_in_text { margin-bottom: 40px; }
 .main { width: 100%;}
 
 
@@ -421,7 +421,7 @@ ul.link li {
 .musicians_text { width: 100%; font-size: 29px; }
 .column div { margin:0px; width: 272px;}
 .column {  margin: 15px 0px 15px 9px; }
-.join_text { margin-bottom: 40px; }
+.album_in_text { margin-bottom: 40px; }
 .image_1 { padding-top: 20px; }
 
 .services_section { background-size: cover;}

@@ -56,9 +56,9 @@
         }
     </style>
     {% load static %}
-
 </head>
 <body>
+
 <!-- 导航栏 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <!-- 网站或应用的Logo，点击可返回首页或主要页面 -->
@@ -105,7 +105,7 @@
                 <a class="nav-link" href="/albums">音乐专辑</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/musician">音乐人</a>
+                <a class="nav-link" href="/musicians">音乐人</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/help">帮助</a>
@@ -122,16 +122,17 @@
 <!-- 搜索栏 -->
 <div class="banner_section layout_padding">
     <!-- 容器，用于更好地控制内层内容的排列和布局 -->
+    {% block new_container %}
     <div class="container">
 
+        {% block bestTitleDiv %}
         <!-- 主标题，强调网站提供的最佳求职搜索功能 -->
-
         <h1 class="bestTitle">
             {% block bestTitle %}
             SEU Music Rating
             {% endblock %}
         </h1>
-
+        {% endblock %}
 
         <!-- 搜索和搜索区域的主要容器 -->
         {% block search_musician %}
@@ -154,6 +155,7 @@
         </p>
         {% endblock %}
     </div>
+    {% endblock %}
 </div>
 
 {% block secondTitleDiv %}
@@ -170,7 +172,6 @@
 {% endblock %}
 
 {% block albums %}
-
 <!-- 11月的萧邦 by 周杰伦 -->
 <div class="album_section layout_padding">
     <!-- 容器流体，用于自定义最大宽度并中心对齐 -->
