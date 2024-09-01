@@ -161,21 +161,6 @@ def get_artist_info():
 
     # 将结果数据转换为JSON格式并返回
     return jsonify(result)
-    # 在这段代码中，jsonify 是 Flask 框架提供的一个函数，用于将 Python 字典转换为 JSON 格式的响应，并设置正确的 MIME 类型为 application/json。这使得客户端能够正确地解析响应内容。
-    # jsonify 函数:
-    # 作用: 将 Python 字典或列表转换为 JSON 格式的字符串，并自动设置 HTTP 响应头部的 Content-Type 为 application/json。
-    # 返回值: 返回一个 Flask Response 对象，其内容是 JSON 格式的字符串。
-    # 含义: result 是一个字典，其中包含了从 Wikipedia 页面解析得到的艺术家信息，例如音乐类型和出道地点等。
-    # 示例: {'音乐类型': '流行音乐', '出道地点': '纽约'}
-    # jsonify(result):
-    # 将 result 字典转换为 JSON 格式的字符串。
-    # 设置 HTTP 响应头部的 Content-Type 为 application/json。
-    # 返回一个 Flask Response 对象，其内容是 JSON 格式的字符串。
-    # return jsonify(result):
-    # 作用: 将处理后的 JSON 数据作为 HTTP 响应返回给客户端。
-    # 效果: 客户端接收到的响应将是一个 JSON 格式的字符串，客户端可以通过 JavaScript 等方式解析这个字符串，并在网页上显示相关信息。
-    # 示例输出:
-    # 假设 result 的值为 {'音乐类型': '流行音乐', '出道地点': '纽约'}，那么 jsonify(result) 的输出将是这样的 JSON 字符串：
 
 # 脚本是作为主程序运行
 if __name__ == '__main__':
