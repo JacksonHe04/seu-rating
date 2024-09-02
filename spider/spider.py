@@ -43,7 +43,7 @@ def get_comments(url):
     '''
     tree = etree.HTML(get_text(url,headers=headers))
     num = re.findall('\d+',tree.xpath('/html/body/div[3]/div[1]/div/div[1]/div/div[1]/ul/li[1]/span/text()')[0])
-    pages = [page for page in range(0,1000,20)]#int(num[0])登录不上
+    pages = [page for page in range(0,int(num[0]),20)]
     urls = get_comments_urls(url,pages)
     CommentSet = []
     with ThreadPoolExecutor(20) as Threads:
@@ -74,7 +74,7 @@ def get_reviews(url):
     '''获取该url下所有乐评(长评)的数据,并返回ReviewSet'''
     tree = etree.HTML(get_text(url,headers=headers))
     num = re.findall('\d+',tree.xpath('//*[@id="content"]/h1/text()')[0])
-    pages = [page for page in range(0,100,20)]#目前这有bug,有一些乐评被折叠了，但没有办法获得被折叠了多少，所以使用评论总数来爬取会报错
+    pages = [page for page in range(0,int(num[0]),20)]#目前这有bug,有一些乐评被折叠了，但没有办法获得被折叠了多少，所以使用评论总数来爬取会报错
     urls = get_reviews_urls(url,pages)
     ReviewSet = []
     with ThreadPoolExecutor(20) as Threads:
