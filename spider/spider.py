@@ -2,7 +2,7 @@ import re
 import requests
 from lxml import etree
 from concurrent.futures.thread import ThreadPoolExecutor
-import spider.items as items
+import items
 import datetime
 
 headers={
@@ -11,7 +11,7 @@ headers={
 }
 data ={
     'name' : '18978509108',
-    'password' : '123456asdfghjk'   ,
+    'password' : '123456asdfghjk',
     'remember' : 'true'
 }
 def login(url):
@@ -23,7 +23,7 @@ def login(url):
     session.post(url,headers=headers,data=data)
 
 def get_text(url,headers):
-    """得到html数据,记得加headers"""
+    '''得到html数据,记得加headers'''
     try:
         resp=requests.get(url=url,headers=headers)
         resp.encoding='utf-8'
@@ -31,6 +31,7 @@ def get_text(url,headers):
         resp.raise_for_status()
         return resp.text
     except:
+        print(resp.text)
         file = open("./errorLog.txt",'w')
         current_time = datetime.datetime.now()
         file.write(str(current_time)+'\n')
@@ -126,7 +127,7 @@ def get_info_artist(url):
     return items.Musician(name,profile,img_scr,info,albums)
 
 
-def get_album(url,author=None):
+def get_album(url, author):
     '''获取当前url数据下的专辑类'''
     resp = get_text(url,headers)
     tree = etree.HTML(resp)
