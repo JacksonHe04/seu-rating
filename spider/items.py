@@ -13,7 +13,7 @@ class Review:
         self.useless_count = useless_count#乐评的无用数
         self.reply_count = reply_count
         
-class Alubm:
+class Album:
     def __init__(self,name,rating,indents,img) -> None:
         self.img = img
         self.name = name

@@ -2,7 +2,7 @@ import re
 import requests
 from lxml import etree
 from concurrent.futures.thread import ThreadPoolExecutor
-import item
+import spider.items as items
 import datetime
 
 headers={
@@ -11,7 +11,7 @@ headers={
 }
 data ={
     'name' : '18978509108',
-    'password' : '123456asdfghjk',
+    'password' : '123456asdfghjk'   ,
     'remember' : 'true'
 }
 def login(url):
@@ -23,7 +23,7 @@ def login(url):
     session.post(url,headers=headers,data=data)
 
 def get_text(url,headers):
-    '''得到html数据,记得加headers'''
+    """得到html数据,记得加headers"""
     try:
         resp=requests.get(url=url,headers=headers)
         resp.encoding='utf-8'
@@ -31,7 +31,6 @@ def get_text(url,headers):
         resp.raise_for_status()
         return resp.text
     except:
-        print(resp.text)
         file = open("./errorLog.txt",'w')
         current_time = datetime.datetime.now()
         file.write(str(current_time)+'\n')
@@ -67,7 +66,7 @@ def get_comment(url):
             score = unprocessed_score[0]
         comment_length = str(len(comment.xpath('./p/span/text()')[0]))
         vote_count = comment.xpath('./h3/span[1]/span/text()')[0]
-        CommentSet.append(item.Comment(score = score,\
+        CommentSet.append(items.Comment(score = score,\
             comment_length=comment_length,vote_count=vote_count))
     return CommentSet
 
@@ -97,7 +96,7 @@ def get_review(url):
             score = unprocessed_score[0]
         useful_count,useless_count = review.xpath('./div/div/div[3]/a/span/text()')
         reply_count = re.findall("\d+",review.xpath('./div/div/div[3]/a[3]/text()')[0])[0]
-        reviewsSet.append(item.Review(score = score,useful_count=useful_count.strip() if len(useful_count.strip()) else '0',\
+        reviewsSet.append(items.Review(score = score,useful_count=useful_count.strip() if len(useful_count.strip()) else '0',\
         useless_count=useless_count.strip() if len(useless_count.strip()) else '0',reply_count=reply_count))
     return reviewsSet
 
@@ -124,10 +123,10 @@ def get_info_artist(url):
         for _url in creations_album_urls:
             t = Threads.submit(get_album,_url,name)
             albums.append(t.result())
-    return item.Musician(name,profile,img_scr,info,albums)
+    return items.Musician(name,profile,img_scr,info,albums)
 
 
-def get_album(url,author):
+def get_album(url,author=None):
     '''获取当前url数据下的专辑类'''
     resp = get_text(url,headers)
     tree = etree.HTML(resp)
@@ -150,7 +149,7 @@ def get_album(url,author):
     infoT=[x for x in infoT if x]
     infoC=[x for x in infoC if x]
     info = [item for pair in zip(infoT, infoC) for item in pair] 
-    return item.Alubm(name=name,rating=rating,indents=indents,img=img_src,comments_num=comments_num,reviews_num=reviews_num,
+    return items.Album(name=name,rating=rating,indents=indents,img=img_src,comments_num=comments_num,reviews_num=reviews_num,
                  voters_number=voters_number,author=author,basic_info=info)
 
 
