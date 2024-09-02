@@ -14,12 +14,13 @@ data ={
     'password' : '123456asdfghjk',
     'remember' : 'true'
 }
+
 def login(url):
+    """废弃函数，不知道用不用得上"""
     session = requests.Session()
     resp = session.get(url,headers = headers)
     if resp.status_code == 200:
         content = resp.content
-        print(content)
     session.post(url,headers=headers,data=data)
 
 def get_text(url,headers):
@@ -98,18 +99,18 @@ def get_review(url):
         useful_count,useless_count = review.xpath('./div/div/div[3]/a/span/text()')
         reply_count = re.findall("\d+",review.xpath('./div/div/div[3]/a[3]/text()')[0])[0]
         reviewsSet.append(items.Review(score = score,useful_count=useful_count.strip() if len(useful_count.strip()) else '0',\
-        useless_count=useless_count.strip() if len(useless_count.strip()) else '0',reply_count=reply_count))
+        useless_count=useless_count.strip() if len(useless_count.strip()) else '0'))
     return reviewsSet
 
 def get_info_artist(url):
-    '''获取该url对应的所有音乐人信息\n
-    返回人物简介,人物图片路径,专辑的URL'''
+    '''获取该url对应的音乐人信息'''
     resp = get_text(url,headers)
     tree = etree.HTML(resp)
     name = tree.xpath('//*[@id="content"]/div/div[1]/section[1]/div[1]/h1/text()')[0]
     img_scr = tree.xpath('//*[@id="content"]/div/div[1]/section[1]/div[1]/div[1]/div[1]/img/@src') [0]
     profile = tree.xpath('//*[@id="content"]/div/div[1]/section[2]/div[1]/div/p[1]/text()')
-    profile = re.sub(r'\u3000','',profile[0])
+    # profile = re.sub(r'\u3000','',profile[0])
+    profile = profile[0].strip()
     basic_information = tree.xpath('//*[@id="content"]/div/div[1]/section[1]/div[1]/div[2]/ul/li/span/text()')
     info = []
     for b_i in basic_information:
@@ -132,16 +133,31 @@ def get_album(url, author):
     resp = get_text(url,headers)
     tree = etree.HTML(resp)
     
-    img_src = tree.xpath('//*[@id="mainpic"]/span/a/img/@src')[0]#获取img路径
-    rating = tree.xpath('//*[@id="interest_sectl"]/div/div[2]/strong/text()')[0]#评分
-    indents = tree.xpath('//*[@id="content"]/div/div[1]/div[3]/div[3]/div/ul/li/text()')#曲目，别问为什么是indents，html中存在这<li class="indent" data-track-order="1.">Intro</li>
-    voters_number = tree.xpath('//*[@id="interest_sectl"]/div/div[2]/div/div[2]/a/span/text()')[0]#投票人数
-    name = tree.xpath('//*[@id="wrapper"]/h1/span/text()')[0]
-    comments_num = re.findall('\d+',tree.xpath('//*[@id="comments-section"]/div[1]/h2/span/a/text()')[0])[0]#短评数
-    reviews_num = re.findall('\d+',tree.xpath('//*[@id="reviews-wrapper"]/header/h2/span/a/text()')[0])[0]#长评数
+    player = tree.xpath('//*[@id="info"]/span/span//text()')
+    new_player = []
+    for i in player:
+        new_player.append(i.strip())
+    player = ''.join(new_player)
+    player = re.sub("表演者:",'',player)
     
+    img_src = tree.xpath('//*[@id="mainpic"]/span/a/img/@src')[0]
+    rating = tree.xpath('//*[@id="interest_sectl"]/div/div[2]/strong/text()')[0]
+    indents = tree.xpath('//*[@id="content"]/div/div[1]/div[3]/div[3]/div/ul/li/text()')
+    voters_number = tree.xpath('//*[@id="interest_sectl"]/div/div[2]/div/div[2]/a/span/text()')[0]
+    name = tree.xpath('//*[@id="wrapper"]/h1/span/text()')[0]
+    comments_num = re.findall('\d+',tree.xpath('//*[@id="comments-section"]/div[1]/h2/span/a/text()')[0])[0]
+    reviews_num = re.findall('\d+',tree.xpath('//*[@id="reviews-wrapper"]/header/h2/span/a/text()')[0])[0]
+    
+    intro1 = tree.xpath('//*[@id="link-report"]/span[1]/text()')
+    intro2 = tree.xpath('//*[@id="link-report"]/span[2]/text()')
+    _intro = intro1 if not intro2 else intro2
+    intro = []
+    for i in _intro:
+        intro.append(i.strip())
     info_content = tree.xpath('//*[@id="info"]/text()')
     info_title = tree.xpath('//*[@id="info"]/span/text()')
+    info_title.insert(0,'表演者:')
+    info_content.insert(0,player)
     infoC = []#信息内容
     infoT = []#信息标题
     for c in info_content :
@@ -152,7 +168,7 @@ def get_album(url, author):
     infoC=[x for x in infoC if x]
     info = [item for pair in zip(infoT, infoC) for item in pair] 
     return items.Album(name=name,rating=rating,indents=indents,img=img_src,comments_num=comments_num,reviews_num=reviews_num,
-                 voters_number=voters_number,author=author,basic_info=info)
+                 voters_number=voters_number,author=author,basic_info=info,intro=intro)
 
 
 def get_comments_urls(url,pages):
@@ -164,7 +180,7 @@ def get_comments_urls(url,pages):
     return urls
 
 def get_reviews_urls(url,pages):
-    '''获取一个乐评的评论区所需要的所有URL'''
+    '''获取一个长评的评论区所需要的所有URL'''
     urls = []
     for page in pages:
         _url = url + '?sort=hotest&start={}'.format(page)
@@ -172,5 +188,11 @@ def get_reviews_urls(url,pages):
     return urls
 
 def  get_all_data(url):
-    '''未完成!!!该函数用于一次调用获取所有数据'''
-    pass
+    '''返回音乐人,音乐人对象中包含的所有专辑的短评集合，所有专辑的长评集合'''
+    musician = get_info_artist(url)
+    Comments = []
+    Reviews = []
+    for i in range(3):
+        Comments.append(get_comments(musician.albums[i].url+'comments'))
+        Reviews.append(get_reviews(musician.albums[i].url+'reviews'))
+    return musician,Comments,Reviews

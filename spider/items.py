@@ -14,11 +14,11 @@ class Review:
         self.useless_count = useless_count#乐评的无用数
 
 class Album:
-    def __init__(self,name=None,rating=None,basic_info=None,indents=None,url = None,
+    def __init__(self,name=None,rating=None,basic_info=None,indents=None,url = None,intro = None,
                  img=None,voters_number=None,comments_num=None,reviews_num=None,author=None) :
         self.img = img #图片路径
         self.name = name #专辑名称
-        self.indents = indents#曲目，别问为什么是indent,html中存在这<li class="indent" data-track-order="1.">Intro</li>
+        self.indents = indents#曲目
         self.rating = rating #评分
         self.voters_num = voters_number #投票人数
         self.author = author #作者
@@ -26,11 +26,11 @@ class Album:
         self.comments_num = comments_num #短评数
         self.reviews_num = reviews_num #长评数
         self.url = url #本专辑对应的url
-        
+        self.intro = intro #专辑简介,每一个元素代表html原文中的一个分行<br>
 class Musician:
-    def __init__(self,name,profile,img,basic_info,album) -> None:
+    def __init__(self,name,profile,img,basic_info,albums) -> None:
         self.name = name #人名
         self.profile = profile #个人简介
         self.img = img #人物图片
         self.basic_info = basic_info #基础信息
-        self.album = album #创作的专辑
+        self.albums = albums #创作的专辑
