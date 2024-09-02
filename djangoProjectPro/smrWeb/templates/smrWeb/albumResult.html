@@ -1,0 +1,130 @@
+<!-- smrWeb/templates/smrWeb/musician_result.html -->
+<!-- 搜索音乐人得到的结果页面 -->
+
+{% extends 'smrWeb/base.html' %}
+
+<!-- 替换title -->
+{% block title %}Album Result{% endblock %}
+
+<!-- 替换bestTitle -->
+<!--{% block bestTitleDiv %}{% endblock %}-->
+
+<!-- 替换searchDiv -->
+{% block new_container %}
+<div class="album_result_container">
+  <div class="album_result_section layout_padding">
+    <div class="album_result_container">
+      <div class="musician_item">
+        <div class="row align-items-center">
+          <div class="col-3 pr-4">
+            <div class="album_result_img">
+              <img
+                src="https://img2.doubanio.com/view/subject/m/public/s34738631.jpg"
+                class="img-fluid"
+                alt="ab01"
+              />
+            </div>
+            <div class="album_intro gen_wrapper">
+              <p class="album_intro_text">
+                <!-- prettier-ignore -->表演者: 苏打绿
+                版本特性: 专辑
+                流派: 流行
+                发行时间: 2023-02-17
+                唱片名: 无与伦比的美丽
+                出版者: 鱼丁糸有限公司/环球音乐
+                <!-- prettier-ignore -->
+              </p>
+            </div>
+          </div>
+
+          <div class="col-6 pr-4">
+            <div class="album_title_div gen_wrapper">
+              <div class="album_result_title">
+                <h1 class="album_title">
+                  <i>无与伦比的美丽<br /></i>
+                  <span>苏打绿</span>
+                </h1>
+              </div>
+            </div>
+            <div
+              class="album_rating gen_wrapper row align-items-center justify-content-center"
+            >
+              <div class="col-6" style="padding-left: 10px; padding-right: 5px">
+                <div class="rating_double">
+                  <div class="seu_rating rating_wrapper row">
+                    <div class="seu_rating_title col-5">
+                      <p>
+                        <i>SEU<br />Rating</i>
+                      </p>
+                    </div>
+                    <div class="seu_rating_score col-7">
+                      <p class="rating_score">9.716</p>
+                    </div>
+                  </div>
+                  <div class="db_rating rating_wrapper row">
+                    <div class="db_rating_title col-5">
+                      <p>豆瓣<br />评分</p>
+                    </div>
+                    <div class="seu_rating_score col-7">
+                      <p class="rating_score">9.7</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-6" style="padding-left: 5px; padding-right: 10px">
+                <div class="album_da_div">
+                  <div class="album_data rating_wrapper">
+                    <div class="data_source_div">
+                      <p class="data_source_text">
+                        我们收集了了<b class="rating_percent">1358</b> 条短评<br />
+                        以及 <b class="rating_percent">9</b> 条长评<br />
+                        通过我们的 SEU Rating
+                        算法对评价给予相应的权重进行筛选和计算，得到最终的 SEU Rating
+                        评分<br />
+                      </p>
+                    </div>
+                  </div>
+                  <div class="album_analysis rating_wrapper">
+                    <div class="data_analysis_div">
+                      <p class="data_analysis_text">
+                        我们的 SEU Rating 评分比豆瓣评分高了<b class="rating_percent">4.2</b>%<br />
+                        这主要是由于：<em>我们把权重更多地给予长评和赞同数更多的短评，而这些用户往往打出了高分，从而更大程度上影响了SEU
+                        Rating算法下的评分
+                      </em>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-3">
+            <div class="album_disc gen_wrapper">
+              <h1 class="album_disc_title">专辑曲目</h1>
+              <!-- prettier-ignore -->
+              <p class="album_disc_text">
+                游乐
+                花茶
+                四季狂想
+                左边
+                无与伦比的美丽
+                白日出没的月球
+                这天
+                简单生活
+                城市
+                相信
+              </p>
+              <!-- prettier-ignore -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %} {% block secondTitleDiv %} {% endblock %}
+
+<!-- 替换albums -->
+{% block albums %} {% endblock %}
