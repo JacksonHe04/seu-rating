@@ -25,8 +25,8 @@ urlpatterns = [
     path('musicianresult/', views.musician_result, name='musician_result'),
 
     # album_result
-    path('albumresult/', views.album_result, name='album_result'),
+    path('albumresult/', views.album_result_none, name='album_result_none'),
 
-
+    path('albumresult/<int:album_id>/', views.album_result, name='album_result'),
 
 ]

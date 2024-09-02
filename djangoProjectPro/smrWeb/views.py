@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Musician
 from django.db import connection
+from .models import Album
 
 
 # Create your views here.
@@ -61,8 +62,8 @@ def about_page(request):
 
 
 # album_result
-def album_result(request):
-    return render(request, 'smrWeb/album_result.html')
+# def album_result(request):
+#     return render(request, 'smrWeb/albumResult.html')
 
 
 def dictfetchone(cursor):
@@ -112,3 +113,25 @@ def musician_result(request):
     print(f"Final albums: {albums}")
 
     return render(request, 'smrWeb/musician_result.html', {'musician': musician, 'albums': albums})
+
+
+def album_result_none(request):
+    # 在这里可以添加任何你需要的逻辑，比如默认显示某个专辑的信息
+    # 或者直接返回一个静态页面
+    return render(request, 'smrWeb/albumResult.html')
+
+
+def album_result(request, album_id):
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM Album WHERE id = %s", [album_id])
+        album = dictfetchone(cursor)
+
+    if not album:
+        return render(request, 'smrWeb/albumResult.html', {'error_message': '专辑未找到'})
+
+    # 打印 album 确认数据格式
+    print(f"Album: {album}")
+
+    return render(request, 'smrWeb/album_result.html', {'album': album})
+
+
