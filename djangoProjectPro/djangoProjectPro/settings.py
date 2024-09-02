@@ -38,7 +38,10 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
 
     # 自定义应用
-    'smrWeb',
+    "smrWeb.musician",
+    "smrWeb.album",
+    "smrWeb.album_mark",
+    "smrWeb.album_recommend",
 
 ]
 
@@ -78,9 +81,9 @@ WSGI_APPLICATION = "djangoProjectPro.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": 'smr_database',
+        "NAME": 'artist',
         'USER': 'root',
-        'PASSWORD': 'vsmvpvp10MS',
+        'PASSWORD': 'root',
         'HOST': 'localhost',
         'PORT': '3306',
         'OPTIONS': {
