@@ -62,7 +62,36 @@ def about_page(request):
 
 # album_result
 def album_result(request):
-    return render(request, 'smrWeb/album_result.html')
+    query = request.GET.get('query')
+    with connection.cursor() as cursor:
+        cursor.execute("SELECT * FROM Album WHERE title = %s", [query])
+        album = dictfetchone(cursor)
+
+    if not album:
+        return render(request, 'smrWeb/album_result.html', {'error_message': '专辑未找到'})
+    # 输出 album 元组以确认数据格式
+    print(f"Album: {album}")
+
+    # 查询与该专辑相关的所有音乐家信息
+    if album:
+        album_id = album['id']
+        with connection.cursor() as cursor:
+            cursor.execute("""
+                SELECT m.* 
+                FROM Musician m 
+                JOIN Musician_Album ma ON m.id = ma.musician_id 
+                WHERE ma.album_id = %s
+            """, [album_id])
+            musicians = dictfetchall(cursor)
+            # 输出 musicians 字典列表以确认数据格式
+        print(f"Musicians: {musicians}")
+    else:
+        musicians = []
+
+    print(f"Final album: {album}")
+    print(f"Final musicians: {musicians}")
+
+    return render(request, 'smrWeb/album_result.html', {'album': album, 'musicians': musicians})
 
 
 def dictfetchone(cursor):
