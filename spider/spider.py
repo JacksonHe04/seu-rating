@@ -130,13 +130,14 @@ def get_album(url,author=None):
     '''获取当前url数据下的专辑类'''
     resp = get_text(url,headers)
     tree = etree.HTML(resp)
-    img_src = tree.xpath('//*[@id="mainpic"]/span/a/img/@src')[0]
-    rating = tree.xpath('//*[@id="interest_sectl"]/div/div[2]/strong/text()')[0]
-    indents = tree.xpath('//*[@id="content"]/div/div[1]/div[3]/div[3]/div/ul/li/text()')
-    voters_number = tree.xpath('//*[@id="interest_sectl"]/div/div[2]/div/div[2]/a/span/text()')[0]
+    
+    img_src = tree.xpath('//*[@id="mainpic"]/span/a/img/@src')[0]#获取img路径
+    rating = tree.xpath('//*[@id="interest_sectl"]/div/div[2]/strong/text()')[0]#评分
+    indents = tree.xpath('//*[@id="content"]/div/div[1]/div[3]/div[3]/div/ul/li/text()')#曲目，别问为什么是indents，html中存在这<li class="indent" data-track-order="1.">Intro</li>
+    voters_number = tree.xpath('//*[@id="interest_sectl"]/div/div[2]/div/div[2]/a/span/text()')[0]#投票人数
     name = tree.xpath('//*[@id="wrapper"]/h1/span/text()')[0]
-    comments_num = re.findall('\d+',tree.xpath('//*[@id="comments-section"]/div[1]/h2/span/a/text()')[0])[0]
-    reviews_num = re.findall('\d+',tree.xpath('//*[@id="reviews-wrapper"]/header/h2/span/a/text()')[0])[0]
+    comments_num = re.findall('\d+',tree.xpath('//*[@id="comments-section"]/div[1]/h2/span/a/text()')[0])[0]#短评数
+    reviews_num = re.findall('\d+',tree.xpath('//*[@id="reviews-wrapper"]/header/h2/span/a/text()')[0])[0]#长评数
     
     info_content = tree.xpath('//*[@id="info"]/text()')
     info_title = tree.xpath('//*[@id="info"]/span/text()')
