@@ -14,11 +14,11 @@ class Review:
         self.useless_count = useless_count#乐评的无用数
 
 class Album:
-    def __init__(self,name=None,rating=None,basic_info=None,indents=None,url = None,intro = None,
+    def __init__(self,name=None,rating=None,basic_info=None,disc=None,url = None,intro = None,
                  img=None,voters_number=None,comments_num=None,reviews_num=None,author=None) :
         self.img = img #图片路径
         self.name = name #专辑名称
-        self.indents = indents#曲目
+        self.disc = disc#曲目
         self.rating = rating #评分
         self.voters_num = voters_number #投票人数
         self.author = author #作者
