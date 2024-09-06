@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="smr_database" uuid="8fbddee0-d2d2-49ce-b793-07ceaaa954e3">
+    <data-source source="LOCAL" name="smr_database@10.203.228.134" uuid="8fbddee0-d2d2-49ce-b793-07ceaaa954e3">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/smr_database</jdbc-url>
+      <jdbc-url>jdbc:mysql://10.203.228.134:3306/smr_database</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="WJC_database" uuid="d89211bc-c067-4138-acbd-2d109f2bd9e7">
+    <data-source source="LOCAL" name="WJC_databases" uuid="d89211bc-c067-4138-acbd-2d109f2bd9e7">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
-      <jdbc-url>jdbc:mysql://localhost:3306/WJC_databases</jdbc-url>
+      <jdbc-url>jdbc:mysql://192.168.56.1:3306/WJC_databases</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
   </component>

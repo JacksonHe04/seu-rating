@@ -40,7 +40,7 @@ def get_comments(url):
     tree = etree.HTML(get_text(url))
     num = int(re.findall('\d+',tree.xpath('/html/body/div[3]/div[1]/div/div[1]/div/div[1]/ul/li[1]/span/text()')[0])[0])
     num = num if num<500 else 500
-    pages = [page for page in range(0,200,20)]#登录时爬取的评论数最多为500，未登录时最多200，
+    pages = [page for page in range(0,num,20)]#登录时爬取的评论数最多为500，未登录时最多200，
     urls = get_comments_urls(url,pages)
     CommentSet = []
     with ThreadPoolExecutor(20) as Threads:

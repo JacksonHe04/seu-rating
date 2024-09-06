@@ -4,11 +4,12 @@ import mysql.connector
 import lxml
 
 db = mysql.connector.connect(
-    host="localhost",  # MySQL服务器地址
-    user="root",  # 用户名
-    password="1234567890-=",  # 密码
-    database="WJC_databases"  # 数据库名称
+    host="localhost",
+    user="root",
+    password="1234567890-=",
+    database="WJC_databases"
 )
+
 cursor = db.cursor()
 def get_seu_rating():
     """让我们假装有这个函数"""
@@ -25,7 +26,7 @@ def insert_album_data(album):
     sql = ("INSERT INTO album(title,rating,rating_count,cover_image,disc,author,seu_rating,"
            "long_count,short_count,rating_difference,album_intro) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
     values = (album.name,album.rating, album.voters_num, album.img, ";".join(album.disc), album.author,seu_rating
-              ,album.comments_num, album.reviews_num, float(album.rating)-seu_rating, "".join(album.intro))
+              ,album.comments_num, album.reviews_num, (seu_rating-float(album.rating))/album.rating*100, "".join(album.intro))
     cursor.execute(sql,values)
     db.commit()
     return cursor.lastrowid
