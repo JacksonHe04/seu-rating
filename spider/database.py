@@ -1,13 +1,13 @@
 import spider
 import items
-import mysql.connector
+import pymysql
 import lxml
 
-db = mysql.connector.connect(
+db = pymysql.connect(
     host="localhost",
     user="root",
-    password="1234567890-=",
-    database="WJC_databases"
+    password="root",
+    database="bdt_database"
 )
 
 cursor = db.cursor()
