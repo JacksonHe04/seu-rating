@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>所有书籍</h1>
+<ul>
+    {% for book in books %}
+    <li>
+        {{ book.title }} by {{ book.author }} ({{ book.publication_date }})
+        <a href="{% url 'update_book' book.id %}">编辑</a>
+        <a href="{% url 'delete_book' book.id %}">删除</a>
+    </li>
+    {% empty %}
+    <li>暂无书籍记录。</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'add_book' %}">添加新书</a>
+{% endblock %}
