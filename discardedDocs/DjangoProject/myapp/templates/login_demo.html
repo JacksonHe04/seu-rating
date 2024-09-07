@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="ch">
+  <head>
+    <meta charset="utf-8" />
+    <!-- 指定文档的字符编码为UTF-8，确保特殊字符在页面上能正确显示 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- 使Internet Explorer浏览器以最高级模式渲染页面，提高兼容性 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- 设置响应式设计，使页面在不同设备上能正确缩放 -->
+    <!-- mobile metas -->
+    <!-- 以下两个meta标签用于移动设备的适配 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <!-- 防止用户在移动设备上缩放页面，提供一致的视觉体验 -->
+    <!-- site metas -->
+    <!-- 用于设置网站的元信息，如作者、关键词等，有助于SEO和社交媒体分享 -->
+
+    <meta name="author" content="" />
+    <!-- 作者信息 -->
+    <!-- bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <!-- 引入Bootstrap CSS用于基本的样式 -->
+    <!-- style css -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!-- 引入自定义的样式文件 -->
+    <!-- Responsive-->
+    <link rel="stylesheet" href="css/responsive.css" />
+    <!-- 引入响应式设计的CSS文件 -->
+    <!-- fevicon -->
+    <link rel="icon" href="../../static/images/fevicon.png" type="image/gif" />
+    <!-- 设置网站图标 -->
+
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
+    <!-- 自定义滚动条样式 -->
+
+    <!-- Tweaks for older IEs-->
+    <link rel="stylesheet" href="css/font-awesome.css" />
+    <!-- 为老版本IE浏览器提供的样式调整，引入Font Awesome图标库 -->
+
+    <!-- owl stylesheets -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css" />
+    <link rel="stylesoeet" href="css/owl.theme.default.min.css" />
+    <!-- 引入Owl Carousel的样式文件 -->
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css" media="screen" />
+    <title>Log in SEU Music Rating</title>
+    <!-- 引入Fancybox样式文件用于弹出层效果 -->
+
+    <!-- 网页标题 -->
+    <title>Log in SEU Music Rating</title>
+    <!-- 设置关键词，有助于SEO优化 -->
+    <meta name="keywords" content="" />
+    <!-- 设置网页描述，有助于SEO优化 -->
+    <meta name="description" content="" />
+    <!-- 指明作者信息 -->
+    <meta name="author" content="" />
+    <!-- 引入Bootstrap框架的CSS样式，用于页面基本样式和响应式设计 -->
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <!-- 引入自定义的CSS样式，用于定制网站主题和细节 -->
+    <link rel="stylesheet" type="text/css" href="css/style.css" />
+    <!-- 引入响应式设计的CSS样式，确保页面在不同设备上正确显示 -->
+    <link rel="stylesheet" href="css/responsive.css" />
+    <!-- 设置网站图标，增强用户体验 -->
+    <link rel="icon" href="../../static/images/fevicon.png" type="image/gif" />
+    <!-- 引入自定义滚动条样式的CSS，提升页面滚动体验 -->
+    <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css" />
+    <!-- 引入旧版IE浏览器的兼容样式，确保页面在旧浏览器中也能正确显示 -->
+    <link rel="stylesheet" href="css/font-awesome.css" />
+    <!-- 引入Owl轮播图插件的CSS样式，用于页面中可能存在的轮播图效果 -->
+    <link rel="stylesheet" href="css/owl.carousel.min.css" />
+    <!-- 引入Owl默认主题的CSS样式 -->
+    <link rel="stylesoeet" href="css/owl.theme.default.min.css" />
+    <!-- 引入Fancybox插件的CSS样式，用于页面中图片、视频等的灯箱效果 -->
+    <link rel="stylesheet" href="css/jquery.fancybox.min.css" media="screen" />
+
+    <style type="text/css">
+      body {
+        background-image: url(../static/images/pianoLoop.jpg);
+        background-repeat: repeat-y;
+        background-position: top left;
+        background-size: cover;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- 导航栏 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- 网站或应用的Logo，点击可返回首页或主要页面 -->
+      <a class="logo" href="index_demo.html"
+        ><img src="../static/images/seuLogo2.jpeg" alt="SeuLogo" class="seuLogo"
+      /></a>
+
+      <!-- 导航栏切换按钮，用于在小屏幕设备上展开或收起导航菜单 -->
+      <!--
+  导航栏切换按钮
+  类名"navbar-toggler"用于样式和功能的识别
+  "type"属性指定按钮类型为"button"，避免表单提交行为
+  "data-toggle"属性指定这个按钮触发的事件是"collapse"，用于折叠展开面板
+  "data-target"属性指定了折叠面板的ID，以便正确控制其显示和隐藏
+  "aria-controls"属性用于ARIA（Accessible Rich Internet Applications）标签，提高可访问性，作用同"data-target"
+  "aria-expanded"属性表示切换按钮的初始状态，"false"表示面板是展开的
+  "aria-label"属性提供了可访问性的标签描述，"Toggle navigation"表示导航切换
+  -->
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="true"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- 此处开始定义导航栏的折叠行为和样式 -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <!-- 导航栏的无序列表 -->
+        <ul class="navbar-nav">
+          <!-- 主页导航项 -->
+          <li class="nav-item">
+            <a class="nav-link" href="index_demo.html">首页</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="searchMusic_demo.html">发现音乐</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="musicAlbums_demo.html">音乐专辑</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="musician_demo.html">音乐人</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="services_demo.html">服务</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="more_demo.html">更多</a>
+          </li>
+        </ul>
+      </div>
+      <!-- 登录链接区域 -->
+      <div class="login_text"><a href="login_demo_waste.html">登录</a></div>
+    </nav>
+
+    <!-- 标题栏 -->
+    <div class="banner_section2 layout_padding">
+      <!-- 容器，用于更好地控制内层内容的排列和布局 -->
+      <div class="container">
+        <h1 class="best_title">Welcome to SEU Music Rating</h1>
+      </div>
+    </div>
+
+    <!-- 登录页面 -->
+    <div class="login_section">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signIn my-5">
+              <div class="card-body">
+                <h5 class="card-title text-center">邮箱登录</h5>
+                <form class="form-signIn">
+                  <!-- 邮箱输入框 -->
+                  <div class="form-label-group">
+                    <input
+                      type="email"
+                      id="inputEmail"
+                      class="form-control"
+                      placeholder="Email address"
+                      required
+                      autofocus
+                    />
+                    <label for="inputEmail">请输入邮箱</label>
+                  </div>
+
+                  <!-- 密码输入框 -->
+                  <div class="form-label-group">
+                    <input
+                      type="password"
+                      id="inputPassword"
+                      class="form-control"
+                      placeholder="Password"
+                      required
+                    />
+                    <label for="inputPassword">请输入密码</label>
+                  </div>
+
+                  <!-- 记住密码复选框 -->
+                  <div class="custom-control custom-checkbox mb-3">
+                    <input
+                      type="checkbox"
+                      class="custom-control-input"
+                      id="customCheck1"
+                    />
+                    <label class="custom-control-label" for="customCheck1"
+                      >在此台设备上记住密码</label
+                    >
+                  </div>
+
+                  <button
+                    class="btn btn-lg btn-primary btn-block text-uppercase logIn_submit_text"
+                    type="submit"
+                  >
+                    登录
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 页脚部分的布局，为用户提供建议功能 -->
+    <div class="footer_section layout_padding">
+      <!-- 容器，包含建议表单的所有元素 -->
+      <div class="container">
+        <!-- 建议标题 -->
+        <h1 class="advice_title">给我们提建议</h1>
+        <!-- 对建议功能的简要描述 -->
+        <p class="advice_text">
+          如果你对我们的项目有任何建议，欢迎在这里填写，我们会尽快处理。
+        </p>
+        <!-- 输入建议的表单 -->
+        <div class="box_main_2">
+          <textarea
+            type=""
+            class="advice_bt"
+            placeholder="填写你的建议"
+            name=""
+          ></textarea>
+        </div>
+        <!-- 提交按钮，引导用户进行提交操作 -->
+        <button class="submit_bt"><a href="#">提交</a></button>
+      </div>
+    </div>
+
+    <!-- 版权和信息区域 -->
+    <div class="copyright_section">
+      <!-- 使用.container类创建一个容器 -->
+      <div class="container">
+        <!-- 使用.row类创建一个行 -->
+        <div class="row">
+          <!-- 使用.col-md-6类创建一个占6列的列 -->
+          <div class="col-md-6">
+            <!-- 版权信息文本，并指向仓库链接 -->
+            <p class="copyright_text">
+              &copy; 2024 SEU Music Rating, all rights reserved
+              <a
+                href="https://gitee.com/jacksonhe04/BDTrueValueRecSys"
+                class="authors_text"
+                >蒋妙 何锦诚 吴锦承</a
+              >
+            </p>
+          </div>
+          <!-- 另一个占6列的列，用于展示Cookies、隐私和条款信息 -->
+          <div class="col-md-6">
+            <!-- Cookies、隐私和条款文本 -->
+            <p class="cookies_text">Cookies, Privacy and Terms</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Javascript files-->
+    <!-- 引入jQuery库，用于简化JavaScript操作 -->
+    <script src="../static/js/jquery.min.js"></script>
+    <!-- 引入Popper.js库，作为Bootstrap某些组件的依赖 -->
+    <script src="../static/js/popper.min.js"></script>
+    <!-- 引入Bootstrap捆绑包，包含Bootstrap所需的全部JavaScript组件 -->
+    <script src="../static/js/bootstrap.bundle.min.js"></script>
+    <!-- 引入更新版本的jQuery库，可能用于特定的JavaScript功能 -->
+    <script src="../static/js/jquery-3.0.0.min.js"></script>
+    <!-- 引入插件库，用于集合项目中所需的多个小功能 -->
+    <script src="../static/js/plugin.js"></script>
+    <!-- 以下为侧边栏导航相关的JavaScript -->
+    <!-- 引入自定义滚动条库，用于增强侧边栏的滚动体验 -->
+    <script src="../static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+    <!-- 引入自定义JavaScript文件，包含页面特有的逻辑和功能 -->
+    <script src="../static/js/custom.js"></script>
+    <!-- 引入Owl Carousel库，用于实现轮播效果 -->
+    <script src="../static/js/owl.carousel.js"></script>
+    <!-- 引入Fancybox库，用于图片和内容的灯箱展示 -->
+    <script src="../static/js/jquery.fancybox.min.js"></script>
+    <!-- 配置Fancybox灯箱效果，去除默认的动画效果 -->
+
+    <script>
+      // 当DOM元素加载完成后，执行以下代码
+      $(document).ready(function () {
+        // 对所有class为"fancybox"的元素应用fancybox插件
+        // fancybox插件用于创建漂亮的图片灯箱效果
+        $(".fancybox").fancybox({
+          // 设置打开灯箱时的动画效果为无
+          openEffect: "none",
+          // 设置关闭灯箱时的动画效果为无
+          closeEffect: "none",
+        });
+      });
+    </script>
+
+    <!-- 引入pffJs/search.js -->
+    <script src="../static/pffJs/search.js"></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // 获取表单元素
+        const form = document.getElementById("loginForm");
+
+        // 监听表单提交事件
+        form.addEventListener("submit", function (event) {
+          event.preventDefault(); // 阻止默认的表单提交行为
+
+          // 这里可以添加验证逻辑，例如检查邮箱和密码是否正确
+          // 假设验证通过
+          window.location.href = "index.html"; //
+        });
+      });
+    </script>
+  </body>
+</html>

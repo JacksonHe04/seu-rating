@@ -1,0 +1,65 @@
+<template>
+  <div class="banner_section layout_padding">
+    <!-- 容器，用于更好地控制内层内容的排列和布局 -->
+    <div class="container">
+      <div class="about_section layout_padding">
+        <!-- 容器流体，用于自定义最大宽度并中心对齐 -->
+        <div class="container-fluid">
+          <!-- 行，用于排列列 -->
+          <div class="row">
+            <!-- 占6个中等屏幕大小的列 -->
+            <div class="col-md-6">
+              <div class="album03">
+                <div class="album_wrapper">
+                  <h1 class="album01_title">
+                    <i>这是我们项目的仓库<br></i>
+                    <span style="font-size: large"
+                      >by 蒋妙，何锦诚，吴锦承</span
+                    >
+                  </h1>
+
+                  <p class="album_text">
+                    本项目旨在开发一个基于大数据的真实值推荐系统，利用先进的算法和技术为用户提供精准的推荐服务。
+                    前端采用 HTML、CSS 和 JavaScript 构建网页界面。 后端使用
+                    Python 开发业务逻辑，Django作为框架，MySQL
+                    作为数据库管理系统。
+                  </p>
+
+                  <div type="button" class="author_bt">
+                    <a href="https://gitee.com/jacksonhe04/BDTrueValueRecSys"
+                      >进入仓库</a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- 占6个中等屏幕大小的列 -->
+            <div class="col-md-6">
+              <div class="album04">
+                <div class="album_wrapper">
+                  <h1 class="album01_title">
+                    <i>这是我们的 Gitee 主页</i>
+                    <span style="font-size: large"
+                      >你可以进入我们的主页一探究竟</span
+                    >
+                  </h1>
+
+                  <div type="button" class="author_bt">
+                    <a href="https://gitee.com/amanises">蒋妙</a>
+                  </div>
+                  <div type="button" class="author_bt">
+                    <a href="https://gitee.com/jacksonhe04">何锦诚</a>
+                  </div>
+                  <div type="button" class="author_bt">
+                    <a href="https://gitee.com/fengguangK">吴锦承</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
