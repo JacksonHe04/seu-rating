@@ -1,5 +1,5 @@
 <!-- smrWeb/templates/smrWeb/musicians_page.html -->
-<!-- 首页 -->
+<!-- 音乐人搜索页面 -->
 
 {% extends 'smrWeb/base.html' %}
 
@@ -12,28 +12,11 @@ Musicians
 {% endblock %}
 
 <!-- 替换search_musician -->
-{% block search_musician %}
-<!-- 搜索和搜索区域的主要容器 -->
-<div class="box_main">
-    <!-- 可输入框，允许用户输入以搜索工作, HtmlFormInputWithoutLabel, HtmlFormInputWithoutLabel -->
-    <!--suppress HtmlFormInputWithoutLabel, HtmlFormInputWithoutLabel, HtmlFormInputWithoutLabel -->
-    <input
-            type="text"
-            class="artist_bt"
-            placeholder="请输入你想了解的音乐人"
-            name=""
-            required
-    />
-    <!-- 搜索按钮，引导用户搜索服务 -->
-    <button class="search_bt"><a href="/musicianresult">搜 索</a></button>
-</div>
-<!-- 解释性文字，向用户介绍该搜索引擎的功能 -->
-<p class="there_text">
-    你可以这样输入，例如：Taylor Swift，以了解该音乐人的信息
-</p>
+{% block there_text %}
+    你可以这样输入，例如：Bob Dylan，以了解该音乐人的信息
 {% endblock %}
 
-<!-- 删除secondTitle -->
+<!-- 替换secondTitle -->
 {% block secondTitle %}
 Musicians
 {% endblock %}
@@ -47,41 +30,57 @@ Musicians
             <div class="hover01 column">
                 <!-- ww, kendrick lamar, syz, sun, rad, hcy, fls, wqf  -->
                 <div>
-                    <figure><img src="../../static/images/syz.png"></figure>
-                    <span class="musicians_text">孙燕姿</span>
+                    <a href="/musicianresult/?query=孙燕姿">
+                        <figure><img src="../../static/images/syz.png"></figure>
+                        <span class="musicians_text">孙燕姿</span>
+                    </a>
                 </div>
                 <div>
-                    <figure><img src="../../static/images/fls.jpg"></figure>
-                    <span class="musicians_text">福禄寿</span>
+                    <a href="/musicianresult/?query=超级市场">
+                        <figure><img src="../../static/images/sm.jpg"></figure>
+                        <span class="musicians_text">超级市场</span>
+                    </a>
                 </div>
-
+                
                 <div>
-                    <figure><img src="../../static/images/kl.jpg"></figure>
-                    <span class="musicians_text">Kendrick Lamar</span>
+                    <a href="/musicianresult/?query=Kendrick Lamar">
+                        <figure><img src="../../static/images/kl.jpg"></figure>
+                        <span class="musicians_text">Kendrick Lamar</span>
+                    </a>
                 </div>
                 <div>
-                    <figure><img src="../../static/images/wqf.jpg"></figure>
-                    <span class="musicians_text">吴青峰</span>
+                    <a href="/musicianresult/?query=吴青峰">
+                        <figure><img src="../../static/images/wqf.jpg"></figure>
+                        <span class="musicians_text">吴青峰</span>
+                    </a>
                 </div>
             </div>
-
+            
             <h2 id="demo02"></h2>
             <div class="hover01 column">
                 <div>
-                    <figure><img src="../../static/images/sun2.jpg"></figure>
-                    <span class="musicians_text">JinJiBeWater_隼</span>
+                    <a href="/musicianresult/?query=张悬">
+                        <figure><img src="../../static/images/zx.jpg"></figure>
+                        <span class="musicians_text">张悬</span>
+                    </a>
                 </div>
                 <div>
-                    <figure><img src="../../static/images/ww.jpg"></figure>
-                    <span class="musicians_text">惘闻</span>
+                    <a href="/musicianresult/?query=惘闻">
+                        <figure><img src="../../static/images/ww.jpg"></figure>
+                        <span class="musicians_text">惘闻</span>
+                    </a>
                 </div>
                 <div>
-                    <figure><img src="../../static/images/hcy.jpg"></figure>
-                    <span class="musicians_text">华晨宇</span>
+                    <a href="/musicianresult/?query=华晨宇">
+                        <figure><img src="../../static/images/hcy.jpg"></figure>
+                        <span class="musicians_text">华晨宇</span>
+                    </a>
                 </div>
                 <div>
-                    <figure><img src="../../static/images/rad.jpeg"></figure>
-                    <span class="musicians_text">RADWIMPS</span>
+                    <a href="/musicianresult/?query=RADWIMPS">
+                        <figure><img src="../../static/images/rad.jpeg"></figure>
+                        <span class="musicians_text">RADWIMPS</span>
+                    </a>
                 </div>
             </div>
         </div>

@@ -1,5 +1,5 @@
 <!-- smrWeb/templates/smrWeb/musician_result.html -->
-<!-- 搜索音乐人得到的结果页面 -->
+<!-- 音乐人结果页面 -->
 
 {% extends 'smrWeb/base.html' %}
 
@@ -87,90 +87,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 专辑2 -->
-                    <!-- <div class="album_row"> -->
-                    <!--     <div class="row"> -->
-                    <!--         <div class="album_row_wrapper"> -->
-                    <!--             <div class="col-3"> -->
-                    <!--                 <div class="album_row_img"> -->
-                    <!--                     <img src="{{ album.cover_image }}" alt="ab2"/> -->
-                    <!--                 </div> -->
-                    <!--             </div> -->
-                    <!--             <div class="col-9"> -->
-                    <!--                 <div class="row"> -->
-                    <!--                     <div class="col-3"> -->
-                    <!--                         <h1 class="album_num">No.2</h1> -->
-                    <!--                     </div> -->
-                    <!--                     <div class="col-9"> -->
-                    <!--                         <h1 class="album_main">{{ album.name }}</h1> -->
-                    <!--                     </div> -->
-                    <!--                 </div> -->
-                    <!--                 <div class="row"> -->
-                    <!--                     <div class="col-2"> -->
-                    <!--                         <p class="ranking_main1" style="margin-right: 20px"> -->
-                    <!--                             SEU Rating -->
-                    <!--                         </p> -->
-                    <!--                     </div> -->
-                    <!--                     <div class="col-3"> -->
-                    <!--                         <p class="ranking_main2">{{ album02.rating }}</p> -->
-                    <!--                     </div> -->
-                    <!--                     <div class="col-3"> -->
-                    <!--                         <p class="ranking_main3" href="#">{{ album02.rating_count }}人评分</p> -->
-                    <!--                     </div> -->
-                    <!--                     <div class="col-4"> -->
-                    <!--                         <div class="album_in_bt"> -->
-                    <!--                             <div class="album_in_text"> -->
-                    <!--                                 <a href="/albumresult">查看详情</a> -->
-                    <!--                             </div> -->
-                    <!--                         </div> -->
-                    <!--                     </div> -->
-                    <!--                 </div> -->
-                    <!--             </div> -->
-                    <!--         </div> -->
-                    <!--     </div> -->
-                    <!-- </div> -->
-                    <!-- 专辑3 -->
-                    <!-- <div class="album_row"> -->
-                    <!--     <div class="row"> -->
-                    <!--         <div class="album_row_wrapper"> -->
-                    <!--             <div class="col-3"> -->
-                    <!--                 <div class="album_row_img"> -->
-                    <!--                     <img src="{{ album.cover_image }}" alt="ab3"/> -->
-                    <!--                 </div> -->
-                    <!--             </div> -->
-                    <!--             <div class="col-9"> -->
-                    <!--                 <div class="row"> -->
-                    <!--                     <div class="col-3"> -->
-                    <!--                         <h1 class="album_num">No.3</h1> -->
-                    <!--                     </div> -->
-                    <!--                     <div class="col-9"> -->
-                    <!--                         <h1 class="album_main">{{ album03.name }}</h1> -->
-                    <!--                     </div> -->
-                    <!--                 </div> -->
-                    <!--                 <div class="row"> -->
-                    <!--                     <div class="col-2"> -->
-                    <!--                         <p class="ranking_main1" style="margin-right: 20px"> -->
-                    <!--                             SEU Rating -->
-                    <!--                         </p> -->
-                    <!--                     </div> -->
-                    <!--                     <div class="col-3"> -->
-                    <!--                         <p class="ranking_main2">{{ album03.rating }}</p> -->
-                    <!--                     </div> -->
-                    <!--                     <div class="col-3"> -->
-                    <!--                         <p class="ranking_main3" href="#">{{ album03.rating_count }}人评分</p> -->
-                    <!--                     </div> -->
-                    <!--                     <div class="col-4"> -->
-                    <!--                         <div class="album_in_bt"> -->
-                    <!--                             <div class="album_in_text"> -->
-                    <!--                                 <a href="/albumresult">查看详情</a> -->
-                    <!--                             </div> -->
-                    <!--                         </div> -->
-                    <!--                     </div> -->
-                    <!--                 </div> -->
-                    <!--             </div> -->
-                    <!--         </div> -->
-                    <!--     </div> -->
-                    <!-- </div> -->
                     {% endfor %}
                 </div>
             </div>
@@ -180,12 +96,13 @@
 
 {% endblock %}
 
+<!-- 删除secondTitleDiv -->
 {% block secondTitleDiv %}{% endblock %}
 
-<!-- 替换albums -->
+<!-- 删除albums -->
 {% block albums %}{% endblock %}
 
-<!-- 写script -->
+<!-- album_id逻辑 -->
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const albums = document.querySelectorAll('.album_row[data-album-id]');

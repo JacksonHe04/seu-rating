@@ -1,3 +1,5 @@
+# djangoProjectPro/djangoProjectPro/settings.py
+# 请勿修改以下代码！
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,9 +29,6 @@ INSTALLED_APPS = [
 
     # 自定义应用
     "smrWeb",
-
-
-
 ]
 
 MIDDLEWARE = [
@@ -66,6 +65,7 @@ WSGI_APPLICATION = "djangoProjectPro.wsgi.application"
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
+    # 使用你的数据库及其相关信息
     "default": {
         "ENGINE": "django.db.backends.mysql",
         "NAME": 'smr_database',

@@ -1,29 +1,20 @@
+<!-- smrWeb/templates/smrWeb/base.html -->
+<!-- 模板 HTML 文件 -->
 <!doctype html>
 <!--suppress HtmlFormInputWithoutLabel -->
 <html lang="ch">
 <head>
     <meta charset="utf-8"/>
-    <!-- 指定文档的字符编码为UTF-8，确保特殊字符在页面上能正确显示 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <!-- 使Internet Explorer浏览器以最高级模式渲染页面，提高兼容性 -->
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!-- 设置响应式设计，使页面在不同设备上能正确缩放 -->
-    <!-- mobile metas -->
     <!-- 以下两个meta标签用于移动设备的适配 -->
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="viewport" content="initial-scale=1, maximum-scale=1"/>
-    <!-- 防止用户在移动设备上缩放页面，提供一致的视觉体验 -->
-    <!-- site metas -->
-    <!-- 用于设置网站的元信息，如作者、关键词等，有助于SEO和社交媒体分享 -->
     
     <!-- 网页标题 -->
     <title>{% block title %}SEU Music Rating{% endblock %}</title>
-    <!-- 设置关键词，有助于SEO优化 -->
-    <meta name="keywords" content=""/>
-    <!-- 设置网页描述，有助于SEO优化 -->
-    <meta name="description" content=""/>
-    <!-- 指明作者信息 -->
-    <meta name="author" content=""/>
     
     {% load static %}
     <!-- css-->
@@ -62,7 +53,7 @@
 <!-- 导航栏 -->
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <!-- 网站或应用的Logo，点击可返回首页或主要页面 -->
-    <a class="logo" href="/home"
+    <a class="logo" href="https://cs.seu.edu.cn/"
     ><img src="../../static/images/seuLogo2.jpeg" alt="SeuLogo" class="seuLogo"
     /></a>
     <button
@@ -132,14 +123,14 @@
                         class="artist_bt"
                         placeholder="请输入你想了解的音乐人"
                         name="query"
-                        required />
+                        required/>
                 <button type="submit" class="search_bt">搜 索</button>
             </div>
         </form>
         
         <!-- 解释性文字，向用户介绍该搜索引擎的功能 -->
         <p class="there_text">
-            你可以通过输入音乐人的名称，了解TA的相关信息以及TA最好的音乐作品
+            {% block there_text %}你可以通过输入音乐人的名称，了解TA的相关信息以及TA最好的音乐作品{% endblock %}
         </p>
         {% endblock %}
     </div>
@@ -178,7 +169,7 @@
                             《11月的萧邦》是周杰伦于2005年11月1日发行的第六张国语专辑。这张专辑的名称灵感来源于著名波兰作曲家弗雷德里克·肖邦（Fryderyk
                             Chopin），周杰伦将其偶像肖邦的音乐风格与自己的音乐创作相结合，创作了这张充满浪漫古典因子的专辑。
                         </p>
-                        <div class="view_bt"><a href="http://127.0.0.1:8000/albumresult/">查看评分</a></div>
+                        <div class="view_bt"><a href="http://127.0.0.1:8000/albumresult/?query=萧邦">查看评分</a></div>
                     </div>
                 </div>
             </div>
@@ -218,7 +209,8 @@
                             《Parachutes》是英国摇滚乐队Coldplay（酷玩乐队）于2000年发行的首张录音室专辑，也是他们的成名作。这张专辑由主唱Chris
                             Martin创作，发行日期为2000年7月10日。专辑中的歌曲《Yellow》更是成为他们的标志性歌曲之一。专辑的音乐风格被描述为梦幻般的流行摇滚，旋律优美，情感丰富。
                         </p>
-                        <div class="view_bt"><a href="http://127.0.0.1:8000/albumresult/">查看评分</a></div>
+                        <div class="view_bt"><a href="http://127.0.0.1:8000/albumresult/?query=Parachutes">查看评分</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -242,7 +234,8 @@
                         <p class="album_text">
                             《冀西南林路行》是万能青年旅店的第二张专辑，豆瓣评分高达9.6分。专辑的创作基于华北平原与太行山脉，沿用了在《万能青年旅店》中所使用大量隐喻的手法，以自然意象的堆砌延伸出对于工业发展与现代化的反思。
                         </p>
-                        <div class="view_bt"><a href="http://127.0.0.1:8000/albumresult/">查看评分</a></div>
+                        <div class="view_bt"><a
+                                href="http://127.0.0.1:8000/albumresult/?query=冀西南林路行">查看评分</a></div>
                     </div>
                 </div>
             </div>
@@ -277,7 +270,8 @@
                             被认为是该乐队音乐生涯中的一个重要里程碑。人声与器乐的交织平静而淡定，甚至让听者能嗅出Post
                             Rock音乐中并不常见的清新的味道。
                         </p>
-                        <div class="view_bt"><a href="http://127.0.0.1:8000/albumresult/">查看评分</a></div>
+                        <div class="view_bt"><a
+                                href="http://127.0.0.1:8000/albumresult/?query=Give Me Beauty">查看评分</a></div>
                     </div>
                 </div>
             </div>
@@ -356,26 +350,6 @@
 <script src="../../static/js/custom.js"></script>
 <!-- 引入Owl Carousel库，用于实现轮播效果 -->
 <script src="../../static/js/owl.carousel.js"></script>
-<!-- 引入Fancybox库，用于图片和内容的灯箱展示 -->
-<script src="../../static/js/jquery.fancybox.min.js"></script>
-<!-- 配置Fancybox灯箱效果，去除默认的动画效果 -->
-
-<script>
-    // 当DOM元素加载完成后，执行以下代码
-    $(document).ready(function () {
-        // 对所有class为"fancybox"的元素应用fancybox插件
-        // fancybox插件用于创建漂亮的图片灯箱效果
-        $(".fancybox").fancybox({
-            // 设置打开灯箱时的动画效果为无
-            openEffect: "none",
-            // 设置关闭灯箱时的动画效果为无
-            closeEffect: "none",
-        });
-    });
-</script>
-
-<!-- 引入pffJs/search.js -->
-<script src="../../static/pffJs/search.js"></script>
 
 </body>
 </html>

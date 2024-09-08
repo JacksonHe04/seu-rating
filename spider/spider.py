@@ -73,9 +73,9 @@ async def get_comment(url):
     for comment in comments:
         unprocessed_score = re.findall('\d', comment.xpath('./h3/span[2]/span[1]/@class')[0])
         score = unprocessed_score[0] if unprocessed_score else None
-        comment_length = str(len(comment.xpath('./p/span/text()')[0]))
+        # comment_length = str(len(comment.xpath('./p/span/text()')[0]))
         vote_count = comment.xpath('./h3/span[1]/span/text()')[0]
-        CommentSet.append(items.Comment(score=score, comment_length=comment_length, vote_count=vote_count))
+        CommentSet.append(items.Comment(score=score, vote_count=vote_count))
     return CommentSet
 
 

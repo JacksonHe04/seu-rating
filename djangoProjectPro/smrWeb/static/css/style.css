@@ -12,18 +12,10 @@
 @import url(jquery-ui.css);
 @import url(nice-select.css);
 
-/* 设置所有元素的盒模型为边框框模型，并且强制优先级高于其他样式 */
 * {
-    /*
-            设置元素的盒模型为border-box
-            这意味着元素的宽度和高度包括了padding和border，而不是只包括内容区域
-            使用!important确保在有其他样式覆盖时，本样式仍然生效
-         */
+    /* 设置所有元素的盒模型为边框框模型 */
     box-sizing: border-box !important;
-    /*
-          * 设置所有属性的过渡效果，平滑变换持续0.5秒
-          * 使用ease缓动函数，初始速度慢，逐渐加快，最后变慢，提供更自然的视觉效果
-          */
+    /* 设置所有属性的过渡效果，平滑变换持续0.5秒 */
     transition: ease all 0.5s;
 }
 
@@ -35,20 +27,16 @@ html {
 /* 设置页面主体的文字颜色、字体大小、字体类型、行高和水平方向不允许滚动 */
 body {
     background-repeat: repeat-y;
-    /* 可选属性，用于控制图片如何覆盖整个区域 */
-    /*/ / 设置背景图片的大小，宽度为容器宽度的100 % ，高度自动调整以保持图片的宽高比 background-size: 100 % auto;*/
 
-    /* 定义文本颜色为深灰色，增加可读性 */
+    /* 定义文本样式 */
     color: #111111;
-
-    /* 设置正文文字大小为14像素，保持文本清晰易读 */
     font-size: 14px;
 
-    /* 分别给我选一款常用耐看的中文和英文的字体，确保品牌一致性或特定风格的呈现 */
+    /* 中文和英文的字体 */
     font-family: "Times New Roman", "Comic Sans MS", "Hiragino Sans GB",
     "Microsoft YaHei", "微软雅黑", Arial, sans-serif;
 
-    /* 设定行高，控制文本的垂直间距，以增强段落的可读性 */
+    /* 设定行高，控制文本的垂直间距 */
     line-height: 1.80857;
 
     /* 文本默认权重设置，避免文本显得过于粗重，保持页面轻盈感 */
@@ -137,15 +125,12 @@ h3 a,
 h4 a,
 h5 a,
 h6 a {
-    color: #212121; /* 设置文字颜色为深灰色，用于提高在不同背景下的可读性 */
-    text-decoration: none !important; /* 确保在任何状态下移除文本的下划线等装饰，增强视觉一致性 */
-    opacity: 1; /* 设置不透明度为完全不透明，确保文本和背景之间没有不必要的视觉干扰 */
+    color: #212121;
+    text-decoration: none !important;
+    opacity: 1;
 }
 
-/*
- * 为按钮元素:focus状态取消默认轮廓
- * 在按钮聚焦时，为了提升用户体验和界面美观，取消周围的轮廓
- */
+/*在按钮聚焦时，为了提升用户体验和界面美观，取消周围的轮廓*/
 button:focus {
     outline: none;
 }
@@ -172,18 +157,6 @@ a {
     color: #222222;
     text-decoration: none;
     outline: none !important;
-}
-
-/* 继承链接样式到.btn类，并添加平滑过渡效果 */
-a,
-.btn {
-    /*/ / 确保文本装饰在任何情况下都保持不变，提高用户交互体验 text-decoration: none !important;*/
-    /*/ / 移除聚焦轮廓，以自定义样式高亮链接，提升视觉效果 outline: none !important;*/
-    /*/ / 使用webkit内核的平滑过渡效果，确保变换的流畅性 -webkit-transition: all 0.3 s ease-in-out;*/
-    /*/ / 确保在Mozila Firefox中的过渡效果同样平滑 -moz-transition: all 0.3 s ease-in-out;*/
-    /*/ / 为Microsoft Edge浏览器提供兼容的过渡效果 -ms-transition: all 0.3 s ease-in-out;*/
-    /*/ / Opera浏览器的过渡效果设置，确保兼容性 -o-transition: all 0.3 s ease-in-out;*/
-    /*/ / 标准的过渡效果设置，适用于大多数现代浏览器 transition: all 0.3 s ease-in-out;*/
 }
 
 /* 确保图片在容器中按比例缩放，保持宽高比 */
@@ -264,15 +237,18 @@ button {
     padding: 0;
 }
 
+/* 背景颜色 */
 .bg-light {
     background-color: #333; /* 深灰色 */
 }
 
+/* 导航栏 */
 .navbar {
     background-color: #231f15 !important;
     opacity: 0.7;
 }
 
+/* 导航栏左侧的Logo图片，设置透明度和圆角 */
 .seuLogo {
     opacity: 0.6 !important;
     border-radius: 10px;
@@ -290,6 +266,7 @@ button {
     font-size: 16px;
 }
 
+/* 导航栏中导航项的布局方式 */
 .navbar-nav {
     /* 在整个页面的水平方向居中 */
     justify-content: center;
@@ -307,7 +284,7 @@ button {
     float: left;
 }
 
-/* 设置登录文字的布局、大小和颜色 */
+/* 设置导航项“登录”的布局、大小和颜色 */
 .login_text {
     width: 8%;
     float: left;
@@ -322,10 +299,10 @@ button {
 
 /* 鼠标悬停时登录链接的颜色变化 */
 .login_text a:hover {
-    color: #9e1d1d;
+    color: #ed510e;
 }
 
-/* 设置横幅图片的样式和背景 */
+/* 设置主板块的样式和背景 */
 .banner_section {
     width: 100%;
     float: left;
@@ -334,11 +311,12 @@ button {
     background-size: cover;
 }
 
+/* 设置次板块的样式和背景 */
 .banner_section2 {
     width: 100%;
     float: left;
     height: auto;
-    padding-bottom: 0px;
+    padding-bottom: 0;
     background-size: cover;
 }
 
@@ -405,6 +383,7 @@ button {
     background-color: #ef852f;
 }
 
+/* 搜索容器样式 */
 .box_main {
     width: 50%;
     margin: 0 auto;
@@ -413,6 +392,7 @@ button {
     display: flex;
 }
 
+/* 搜索框下方提示文本样式 */
 .there_text {
     width: 70%;
     margin: 0 auto;
@@ -426,61 +406,25 @@ button {
     display: flex;
 }
 
-.bt_main {
-    width: 20%;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.discover_bt {
-    width: 100%;
-    float: left;
-    margin-top: 50px;
-}
-
-.discover_bt a {
-    width: 100%;
-    float: left;
-    font-size: 18px;
-    color: #ffffff;
-    text-align: center;
-    padding: 10px 0;
-    background-color: #252525;
-}
-
-.discover_bt a:hover {
-    color: #252525;
-    background-color: #ffffff;
-}
-
-/* 专辑展示板块 */
+/* 单个专辑的展示板块 */
 .album_section {
     width: 100%;
     float: left;
-    /*  */
     margin-top: -40px;
 }
 
+/* 奇数行专辑板块 */
 .album01 {
     width: 90%;
     height: 100%;
     float: right;
 }
 
+/* 偶数行专辑板块 */
 .album02 {
     width: 90%;
     height: 100%;
     float: left;
-}
-
-.album03 {
-    width: 100%;
-    float: left;
-}
-
-.album04 {
-    width: 100%;
-    float: right;
 }
 
 .image_1 {
@@ -575,35 +519,7 @@ button {
     background-color: #cf7328;
 }
 
-.author_bt {
-    width: 25%;
-    float: left;
-    margin-top: 17px;
-    border: 20px #1b1b1b;
-    /* 圆角 */
-    border-radius: 20px !important;
-    /* 为元素添加一个黑色的外阴影效果，以增强元素的立体感 */
-    box-shadow: 2px 10px 10px #000000;
-}
 
-.author_bt a {
-    width: 100%;
-    height: 100%;
-    float: left;
-    font-size: 18px;
-    color: #2e1b0b;
-    text-align: center;
-    padding: 10px 0;
-    background-color: rgba(228, 199, 182, 0.51);
-    border-radius: 20px;
-    /* 防止内容溢出 */
-    overflow: hidden;
-}
-
-.author_bt a:hover {
-    color: #fff;
-    background-color: #cf7328;
-}
 
 /* 页脚部分的布局，为用户提供建议功能 */
 .footer_section {
@@ -656,8 +572,6 @@ button {
     background-color: #313233;
     /* 元素浮动到右侧，以便进行右侧布局 */
     float: right;
-    /* 设置内边距，用于控制元素内容与边框之间的距离 */
-    padding: 9px 14px;
     /* 文字颜色设置为白色，以确保在深色背景上的可读性 */
     color: #fff;
     /* 设置元素高度，确保元素能够包含特定大小的内容 */
@@ -672,7 +586,7 @@ button {
     position: relative;
     /* 调整元素在水平方向上向右移动的距离，以精确对齐 */
     right: 561px;
-    padding-top: 10px;
+    padding: 10px 14px 9px;
     /*padding-bottom: 10px !important;*/
     line-height: 20px;
 }
@@ -943,7 +857,7 @@ figure:hover + span {
 .hoverHp span {
     bottom: 2px;
     opacity: 1;
-    margin-bottom: 0px !important;
+    margin-bottom: 0 !important;
 }
 
 .hover01 figure img {
@@ -1066,7 +980,7 @@ figure:hover + span {
     font-size: 13px;
     text-align: left;
     background-color: rgba(234, 230, 227, 0.63);
-    margin-left: 0px;
+    margin-left: 0;
     padding: 10px;
 }
 
@@ -1075,7 +989,7 @@ figure:hover + span {
     font-size: 13px;
     text-align: left;
     background-color: rgba(234, 230, 227, 0.63);
-    margin-left: 0px;
+    margin-left: 0;
     padding: 10px;
 }
 
@@ -1087,7 +1001,7 @@ figure:hover + span {
     display: flex;
     flex-direction: row;
     background-color: rgba(255, 255, 255, 0.5); /* 背景颜色为白色，透明度为0.7 */
-    padding: 0px 5px; /* 添加内边距以美化文本布局 */
+    padding: 0 5px; /* 添加内边距以美化文本布局 */
     border-radius: 30px; /* 圆角效果，可选 */
     /* 让这一部分与垂直旁边的图片等高对齐 */
     justify-content: center;
@@ -1221,7 +1135,7 @@ figure:hover + span {
     float: left;
     /*text-align: center;*/
     height: 300px;
-    margin-top: 0px;
+    margin-top: 0;
 }
 
 .album_result_img img {
@@ -1291,14 +1205,14 @@ figure:hover + span {
 .seu_rating {
     width: 100%;
     height: 134px;
-    margin: 0px 0px 0 0;
+    margin: 0 0 0 0;
     align-items: center;
 }
 
 .db_rating {
     width: 100%;
     height: 134px;
-    margin: 12px 0px 0 0;
+    margin: 12px 0 0 0;
     align-items: center;
 }
 
@@ -1355,7 +1269,7 @@ figure:hover + span {
 .album_data {
     width: 100%;
     height: 134px;
-    margin: 0px 0px 0 0;
+    margin: 0 0 0 0;
     padding-top: 15px;
 }
 
@@ -1373,7 +1287,7 @@ figure:hover + span {
 .album_analysis {
     width: 100%;
     height: 134px;
-    margin: 12px 0px 0 0;
+    margin: 12px 0 0 0;
     padding-top: 5px;
 }
 
@@ -1644,7 +1558,6 @@ input.btn_main_2::placeholder {
 /* 定义第三种主按钮的样式，与第二种类似，但背景色和填充有所不同 */
 .btn_main_3 {
     float: left;
-    padding-right: 0;
     background-color: #222121;
     color: #fff;
     text-align: center;
@@ -1736,8 +1649,7 @@ input.btn_main_3::placeholder {
     padding-top: 30px; /* 顶部内边距为30像素，用于元素间的垂直间距 */
 }
 
-/* view_now */
-/* 定义“查看评分”按钮的样式 */
+/* 帮助页面按钮的样式 */
 .view_now {
     width: 100%; /* 按钮宽度占据父容器的全部宽度 */
     float: left; /* 使元素在左侧浮动，用于布局 */
@@ -1755,13 +1667,48 @@ input.btn_main_3::placeholder {
 }
 
 .view_now:hover {
-    /* 鼠标悬停时改变按钮背景颜色 */
     background-color: #dd883f;
 }
 
-/*.col-sm-2 .view_now {*/
-/*    !* 特定样式 *!*/
-/*    background-color: #ff0000;*/
-/*    color: #ffffff;*/
+/* about_page.html 中左边的容器样式 */
+.about_left {
+    width: 100%;
+    float: left;
+}
 
-/*}*/
+/* about_page.html 中右边的容器样式 */
+.about_right {
+    width: 100%;
+    float: right;
+}
+
+/* about_page.html 的进入链接的按钮 */
+.author_bt {
+    width: 25%;
+    float: left;
+    margin-top: 17px;
+    border: 20px #1b1b1b;
+    /* 圆角 */
+    border-radius: 20px !important;
+    /* 为元素添加一个黑色的外阴影效果，以增强元素的立体感 */
+    box-shadow: 2px 10px 10px #000000;
+}
+
+.author_bt a {
+    width: 100%;
+    height: 100%;
+    float: left;
+    font-size: 18px;
+    color: #2e1b0b;
+    text-align: center;
+    padding: 10px 0;
+    background-color: rgba(228, 199, 182, 0.51);
+    border-radius: 20px;
+    /* 防止内容溢出 */
+    overflow: hidden;
+}
+
+.author_bt a:hover {
+    color: #fff;
+    background-color: #cf7328;
+}

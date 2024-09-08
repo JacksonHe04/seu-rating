@@ -6,8 +6,8 @@ import lxml
 db = pymysql.connect(
     host="localhost",
     user="root",
-    password="root",
-    database="bdt_database"
+    password="vsmvpvp10MS",
+    database="smr_database"
 )
 
 cursor = db.cursor()
@@ -25,8 +25,8 @@ def insert_album_data(album):
     seu_rating = get_seu_rating()
     sql = ("INSERT INTO album(title,rating,rating_count,cover_image,disc,author,seu_rating,"
            "long_count,short_count,rating_difference,album_intro) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)")
-    values = (album.name,album.rating, album.voters_num, album.img, ";".join(album.disc), album.author,seu_rating
-              ,album.comments_num, album.reviews_num, (seu_rating-float(album.rating))/album.rating*100, "".join(album.intro))
+    values = (album.name,album.rating, album.voters_num, album.img, "\n".join(album.disc), album.author,seu_rating
+              ,album.comments_num, album.reviews_num, (seu_rating-float(album.rating))/float(album.rating)*100, "".join(album.intro))
     cursor.execute(sql,values)
     db.commit()
     return cursor.lastrowid
