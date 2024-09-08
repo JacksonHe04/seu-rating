@@ -5,6 +5,14 @@ import numpy as np
 
 # 使用 SQLAlchemy 连接数据库
 engine = create_engine("mysql+pymysql://root:root@localhost/bdt_database")
+db = pymysql.connect(
+    host="localhost",
+    user="root",
+    password="root",
+    database="bdt_database"
+)
+
+cursor = db.cursor()
 
 # 从数据库中提取数据
 query = "SELECT * FROM rating;"
@@ -82,6 +90,27 @@ data_cleaned = normalize_to_10(data_cleaned)
 # 6. 按 album_id 分组，计算每个专辑的最终评分
 final_album_scores = data_cleaned.groupby('album_id')['final_score'].mean().reset_index()
 
+
+def get_seu_rating():
+    try:
+        # 将最终评分更新到 album 表中
+        for index, row in final_album_scores.iterrows():
+            album_id = row['album_id']
+            final_rating = row['final_score']
+            update_query = f"UPDATE album SET seu_rating = {final_rating} WHERE id = {album_id}"
+            cursor.execute(update_query)
+
+        # 提交事务
+        db.commit()
+    except Exception as e:
+        print(f"发生错误: {e}")
+        db.rollback()
+
+
+# 调用函数
+get_seu_rating()
+
+
 # 从数据库中提取数据
 query_musician_album = "SELECT * FROM musician_album;"
 data_musician_album = pd.read_sql(query_musician_album, engine)
@@ -101,18 +130,47 @@ top_albums = merged_data.groupby('musician_id').apply(
 ).reset_index(drop=True)
 
 # 提取所需列
-top_albums = top_albums[['musician_id', 'name', 'title', 'final_score']]
+top_albums = top_albums[['musician_id', 'name', 'title', 'final_score', 'album_id']]
 
-# 将结果插入新表 `recommend`
-top_albums.to_sql('recommend', con=engine, if_exists='append', index=False)
 
-# 输出结果
-print(top_albums)
+# 更新 musician 表中的排名信息
+def show_musician_top_album():
+    try:
+        # 获取每个音乐家的前三名专辑 ID
+        top_albums_grouped = top_albums.groupby('musician_id').head(3)
+        top_albums_grouped = top_albums_grouped.sort_values(by=['musician_id', 'final_score'], ascending=[True, False])
 
+        # 更新 musician 表中的 rank1_id, rank2_id, rank3_id
+        for musician_id, group in top_albums_grouped.groupby('musician_id'):
+            album_ids = group['album_id'].tolist()
+
+            # 使用参数化查询
+            update_query = """
+                UPDATE musician 
+                SET rank1_id = %s, 
+                    rank2_id = %s, 
+                    rank3_id = %s 
+                WHERE id = %s
+            """
+            cursor.execute(update_query, (
+            album_ids[0], album_ids[1] if len(album_ids) > 1 else None, album_ids[2] if len(album_ids) > 2 else None,
+            musician_id))
+
+        # 提交事务
+        db.commit()
+    except Exception as e:
+        print(f"发生错误: {e}")
+        db.rollback()
+
+
+# 调用函数
+show_musician_top_album()
+
+# 关闭数据库连接
+db.close()
+# # 将结果插入新表 `recommend`
+# top_albums.to_sql('recommend', con=engine, if_exists='append', index=False)
+#
 # # 输出结果
-# print(final_album_scores)
-#
-# # 保存为 CSV 文件
-# final_album_scores.to_csv('final_album_scores.csv', index=False)
-#
+# print(top_albums)
 
