@@ -2,18 +2,16 @@ import spider
 import items
 import pymysql
 import lxml
+from rec.iteration import get_seu_rating
 
 db = pymysql.connect(
     host="localhost",
     user="root",
-    password="vsmvpvp10MS",
-    database="smr_database"
+    password="root",
+    database="bdt_database"
 )
 
 cursor = db.cursor()
-def get_seu_rating():
-    """让我们假装有这个函数"""
-    return 10
 
 def insert_musician_data(musician):
     cursor.execute("INSERT INTO musician(name,image_path,basic_info,introduction) VALUES (%s,%s,%s,%s)",
