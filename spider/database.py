@@ -11,15 +11,19 @@ db = pymysql.connect(
 )
 
 cursor = db.cursor()
+
+
 def get_seu_rating():
     """让我们假装有这个函数"""
     return 10
+
 
 def insert_musician_data(musician):
     cursor.execute("INSERT INTO musician(name,image_path,basic_info,introduction) VALUES (%s,%s,%s,%s)",
                    (musician.name,musician.img, ';'.join(musician.basic_info), musician.profile))
     db.commit()
     return cursor.lastrowid
+
 
 def insert_album_data(album):
     seu_rating = get_seu_rating()
@@ -30,11 +34,14 @@ def insert_album_data(album):
     cursor.execute(sql,values)
     db.commit()
     return cursor.lastrowid
+
+
 def insert_musician_album_data(musician_id,album_id):
     sql = "INSERT INTO musician_album(musician_id,album_id) VALUES (%s,%s)"
     values = (musician_id,album_id)
     cursor.execute(sql,values)
     db.commit()
+
 
 def insert_rating_data(album_id,comments,reviews):
     for comment in comments:
@@ -48,12 +55,14 @@ def insert_rating_data(album_id,comments,reviews):
         cursor.execute(sql,values)
     db.commit()
 
+
 def insert_data(musician,comments,reviews):
     musician_id = insert_musician_data(musician)
     for i in range(len(musician.albums)):
         album_id = insert_album_data(musician.albums[i])
         insert_musician_album_data(musician_id,album_id)
         insert_rating_data(album_id,comments[i],reviews[i])
+
 
 def delete_all_data():
     cursor.execute("DELETE FROM rating")

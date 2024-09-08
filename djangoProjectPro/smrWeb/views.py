@@ -84,19 +84,33 @@ def musician_result(request):
 
     # 查询与该音乐家相关的所有专辑信息
     if musician:
-        musician_id = musician['id']
-        with connection.cursor() as cursor:
-            cursor.execute("""
-                   SELECT a.* 
-                   FROM Album a 
-                   JOIN Musician_Album ma ON a.id = ma.album_id 
-                   WHERE ma.musician_id = %s
-               """, [musician_id])
-            albums = dictfetchall(cursor)
-            # 输出 albums 字典列表以确认数据格式
-        print(f"Albums: {albums}")
-    else:
+        # 获取音乐家的三张专辑的 ID（album1, album2, album3）
+        album1_id = musician['album1']
+        album2_id = musician['album2']
+        album3_id = musician['album3']
+
+        # 确保 album_id 不为 None，查询专辑详细信息
         albums = []
+        if album1_id:
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT * FROM Album WHERE id = %s", [album1_id])
+                album1 = dictfetchone(cursor)
+                if album1:
+                    albums.append(album1)
+
+        if album2_id:
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT * FROM Album WHERE id = %s", [album2_id])
+                album2 = dictfetchone(cursor)
+                if album2:
+                    albums.append(album2)
+
+        if album3_id:
+            with connection.cursor() as cursor:
+                cursor.execute("SELECT * FROM Album WHERE id = %s", [album3_id])
+                album3 = dictfetchone(cursor)
+                if album3:
+                    albums.append(album3)
 
     print(f"Final musician: {musician}")
     print(f"Final albums: {albums}")
