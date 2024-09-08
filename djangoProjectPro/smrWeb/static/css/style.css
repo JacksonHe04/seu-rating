@@ -660,7 +660,6 @@ button {
 .search_section {
     width: 100%;
     float: left;
-    background-image: url(../images/search_bg.png);
     height: auto;
     background-size: cover;
     padding-bottom: 90px;
@@ -1074,12 +1073,13 @@ figure:hover + span {
     font-size: 15px;
     text-align: left;
     color: #231f15;
-    margin-left: -40px;
-    margin-top: 33px;
+    margin-left: 80px;
+    margin-top: -20px;
+    margin-bottom: 5px;
 }
 
 .album_in_bt {
-    width: 100%;
+    width: 80%;
     margin: 15px auto;
     text-align: center;
     font-size: 18px; /* 设置字体大小为18像素，使按钮文本清晰可见 */
@@ -1160,7 +1160,7 @@ figure:hover + span {
     width: 100%;
     font-size: 13px;
     text-align: left;
-    padding: 5px 30px;
+    padding: 15px 30px;
     white-space: pre-line;
 }
 
@@ -1177,6 +1177,7 @@ figure:hover + span {
     text-shadow: 1px 1px 3px #000000;
     display: flex;
     flex-direction: column;
+    padding-left: 15px;
 }
 
 .album_title > span {
@@ -1217,7 +1218,8 @@ figure:hover + span {
 }
 
 .seu_rating_title {
-    padding-left: 5px;
+    padding-left: 0px;
+    margin-left: -5px;
 }
 
 .seu_rating_title p {
@@ -1244,21 +1246,21 @@ figure:hover + span {
     width: 100%;
     font-size: 70px;
     text-align: left;
-    margin-left: -5px;
     margin-top: 23px;
 }
 
 .seu_rating .rating_score {
     text-shadow: 2px 2px 10px #000000;
     color: #ffffff;
-    /* 加粗 */
     font-weight: bold;
+    margin-left: -20px;
 }
 
 .db_rating .rating_score {
     color: #fff;
     text-shadow: 1px 1px 3px #000000;
     font-weight: bold;
+    margin-left: -5px;
 }
 
 .album_da_div {
@@ -1292,16 +1294,14 @@ figure:hover + span {
 }
 
 .data_analysis_text {
-    margin-top: 0;
+    margin-top: 5px;
     text-shadow: 2px 2px 10px #000000;
     color: #ffffff;
-    /* 加粗 */
-    /*font-weight: bold;*/
     font-size: 12px;
     /* 行间距 */
-    line-height: 1.7;
-    margin-left: 10px;
-    margin-right: 5px;
+    line-height: 1.5;
+    margin-left: 12px;
+    margin-right: 7px;
 }
 
 .rating_percent {
@@ -1322,7 +1322,7 @@ figure:hover + span {
 }
 
 .album_disc_text {
-    margin-top: -35px;
+    margin-top: 0;
     width: 100%;
     font-size: 24px;
     text-align: left;
