@@ -15,7 +15,7 @@ cursor = db.cursor()
 
 def get_seu_rating():
     """让我们假装有这个函数"""
-    return 10
+    return 8
 
 
 def insert_musician_data(musician):

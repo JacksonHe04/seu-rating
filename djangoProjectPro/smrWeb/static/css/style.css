@@ -327,11 +327,14 @@ button {
     font-size: 60px;
     /* 设置文字阴影，水平偏移10px，垂直偏移10px */
     /* 模糊半径10px，颜色为黑色*/
-    text-shadow: 10px 10px 10px #000000;
+    /*text-shadow: 10px 10px 10px #000000;*/
     /* 给文字描边 */
     -webkit-text-stroke: 0.3px #2f291b;
-    color: #a6a098;
     text-align: center;
+    color: #e4dfd9;
+    text-shadow: 2px 2px 10px #000000;
+    /*color: #ffffff;*/
+    font-weight: bold;
 }
 
 /* 设置输入框的样式和布局 */
@@ -343,7 +346,7 @@ button {
     /* 设置输入框内文字的大小为16px */
     font-size: 20px;
     /* 设置输入框内文字的颜色为一个深灰色，增加可读性 */
-    color: #111111;
+    color: #000000;
     /* 设置输入框的背景色为白色 */
     background-color: #ffffff;
     /* 使输入框内的文字左对齐 */
@@ -360,7 +363,7 @@ button {
     /* 设置输入框的左下角为圆角，与左上角对应 */
     border-bottom-left-radius: 50px;
     /* 设置透明度为50%，使界面更有未来感 */
-    opacity: 40%;
+    opacity: 70%;
 }
 
 /* 设置搜索按钮的样式和布局 */
@@ -397,7 +400,7 @@ button {
     width: 70%;
     margin: 0 auto;
     text-align: center;
-    color: #a6a098;
+    color: #e4dfd9;
     /* 阴影 */
     text-shadow: 2px 2px 10px #000000;
     /* 水平对齐 */
@@ -444,7 +447,7 @@ button {
 .album_wrapper {
     display: flex;
     flex-direction: column;
-    background-color: rgba(255, 255, 255, 0.5); /* 背景颜色为白色，透明度为0.7 */
+    background-color: rgba(255, 255, 255, 0.7); /* 背景颜色和透明度 */
     padding: 40px; /* 添加内边距以美化文本布局 */
     border-radius: 30px; /* 圆角效果，可选 */
     /* 让这一部分与垂直旁边的图片等高对齐 */
@@ -459,7 +462,7 @@ button {
             255,
             255,
             255,
-            0.5
+            0.7
     ) !important; /* 背景颜色为白色，透明度为0.7 */
     padding: 40px; /* 添加内边距以美化文本布局 */
     border-radius: 30px; /* 圆角效果，可选 */
@@ -764,7 +767,7 @@ button {
     float: left;
 }
 
-.musicians_text {
+.secondTitle {
     width: 41%;
     margin: 0 auto;
     font-size: 46px;
@@ -772,10 +775,12 @@ button {
     border-bottom: 5px solid rgba(221, 136, 63, 0.44);
     /* 设置文字阴影，水平偏移10px，垂直偏移10px */
     /* 模糊半径10px，颜色为黑色*/
-    text-shadow: 10px 10px 10px #000000;
+    /*text-shadow: 10px 10px 10px #000000;*/
     /* 给文字描边 */
-    -webkit-text-stroke: 0.6px #2f291b;
-    color: #a6a098;
+    /*-webkit-text-stroke: 0.6px #2f291b;*/
+    /*color: #e4dfd9;*/
+    color: #e4dfd9;
+    text-shadow: 2px 2px 10px #000000;
 }
 
 h2 {
@@ -978,7 +983,7 @@ figure:hover + span {
     width: 100%;
     font-size: 13px;
     text-align: left;
-    background-color: rgba(234, 230, 227, 0.63);
+    background-color: rgba(234, 230, 227, 0.75);
     margin-left: 0;
     padding: 10px;
 }
@@ -987,7 +992,7 @@ figure:hover + span {
     width: 100%;
     font-size: 13px;
     text-align: left;
-    background-color: rgba(234, 230, 227, 0.63);
+    background-color: rgba(234, 230, 227, 0.75);
     margin-left: 0;
     padding: 10px;
 }
@@ -999,7 +1004,7 @@ figure:hover + span {
 .album_row_wrapper {
     display: flex;
     flex-direction: row;
-    background-color: rgba(255, 255, 255, 0.5); /* 背景颜色为白色，透明度为0.7 */
+    background-color: rgba(255, 255, 255, 0.7); /* 背景颜色为白色，透明度为0.7 */
     padding: 0 5px; /* 添加内边距以美化文本布局 */
     border-radius: 30px; /* 圆角效果，可选 */
     /* 让这一部分与垂直旁边的图片等高对齐 */
@@ -1042,10 +1047,8 @@ figure:hover + span {
     /* 为元素添加一个底部边框，增强视觉效果 */
     border-bottom: 5px solid rgba(221, 136, 63, 0.44);
     /* 设置文字阴影，水平偏移10px，垂直偏移10px */
-    /* 模糊半径10px，颜色为黑色*/
     text-shadow: 2px 2px 10px #000000;
     color: #ffffff;
-    /* 加粗 */
     font-weight: bold;
 }
 
@@ -1145,7 +1148,7 @@ figure:hover + span {
 }
 
 .gen_wrapper {
-    background-color: rgba(255, 255, 255, 0.5);
+    background-color: rgba(255, 255, 255, 0.7);
     border-radius: 30px;
 }
 
@@ -1173,7 +1176,8 @@ figure:hover + span {
 
 .album_title {
     font-size: 50px;
-    color: #d6cec3;
+    color: #e4dfd9;
+    font-weight: bold;
     text-shadow: 1px 1px 3px #000000;
     display: flex;
     flex-direction: column;
@@ -1366,7 +1370,7 @@ figure:hover + span {
     margin-bottom: 5px;
     font-weight: 300;
     font-size: 1.5rem;
-    color: #a6a098;
+    color: #e4dfd9;
 }
 
 .card-body {
@@ -1421,7 +1425,7 @@ figure:hover + span {
     width: 100%;
     margin-bottom: 0;
     /*/ / 设置行高为1 .5 倍，以增加段落文本的可读性和美观性 line-height: 1.5;*/
-    color: #a6a098;
+    color: #e4dfd9;
     font-size: 20px;
     /* 设置元素边框为1像素的实心透明边框 */
     border: 1px solid transparent;
@@ -1489,7 +1493,7 @@ figure:hover + span {
 }
 
 .custom-control-label {
-    color: #a6a098;
+    color: #e4dfd9;
     font-size: 18px;
 }
 
