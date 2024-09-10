@@ -127,10 +127,31 @@ def album_result(request, album_id):
     if not album:
         return render(request, 'smrWeb/albumResult.html', {'error_message': '专辑未找到'})
 
-    # 打印 album 确认数据格式
-    print(f"Album: {album}")
+    # 获取该专辑的音乐人信息
+    with connection.cursor() as cursor:
+        cursor.execute("""
+            SELECT m.* FROM Musician m
+            JOIN Musician_album ma ON m.id = ma.musician_id
+            WHERE ma.album_id = %s
+        """, [album_id])
+        musician = dictfetchone(cursor)
 
-    return render(request, 'smrWeb/album_result.html', {'album': album})
+    # 获取该音乐人的其他专辑（排除当前专辑）
+    other_albums = []
+    if musician:
+        with connection.cursor() as cursor:
+            cursor.execute("""
+                SELECT a.* FROM Album a
+                JOIN Musician_album ma ON a.id = ma.album_id
+                WHERE ma.musician_id = %s AND a.id != %s
+            """, [musician['id'], album_id])
+            other_albums = dictfetchall(cursor)
+
+    # 渲染模板并传递数据
+    return render(request, 'smrWeb/album_result.html', {
+        'album': album,
+        'other_albums': other_albums,
+    })
 
 
 # 在搜索框搜索专辑名称
@@ -147,4 +168,33 @@ def album_result_search(request):
     print(f"Album: {album}")
     print(f"Final album: {album}")
 
-    return render(request, 'smrWeb/album_result.html', {'album': album})
+    # 获取该专辑的音乐人信息
+    with connection.cursor() as cursor:
+        cursor.execute("""
+                SELECT m.* FROM Musician m
+                JOIN Musician_album ma ON m.id = ma.musician_id
+                WHERE ma.album_id = %s
+            """, [album['id']])
+        musician = dictfetchone(cursor)
+
+    # 获取该音乐人的其他专辑（排除当前专辑）
+    other_albums = []
+    if musician:
+        with connection.cursor() as cursor:
+            cursor.execute("""
+                    SELECT a.* FROM Album a
+                    JOIN Musician_album ma ON a.id = ma.album_id
+                    WHERE ma.musician_id = %s AND a.id != %s
+                """, [musician['id'], album['id']])
+            other_albums = dictfetchall(cursor)
+
+    # 输出 musician 和推荐的其他专辑以确认数据格式
+    print(f"Musician: {musician}")
+    print(f"Other Albums: {other_albums}")
+
+    # 渲染模板并传递数据
+    return render(request, 'smrWeb/album_result.html', {
+        'album': album,
+        'musician': musician,
+        'other_albums': other_albums,  # 推荐专辑
+    })

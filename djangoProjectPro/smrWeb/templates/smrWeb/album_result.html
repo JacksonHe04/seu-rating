@@ -108,6 +108,39 @@
             </div>
         </div>
     </div>
+    
+    <div class="musicians_section layout_padding">
+    <div class="container recommend_title" style="margin-top: -100px">
+        <h1 class="secondTitle">
+            下滑以获得更多专辑推荐<br>
+        </h1>
+    </div>
+    <div class="album_recommend_section">
+    <div class="row">
+        {% for other_album in other_albums|slice:":4" %}
+        <!-- 专辑展示 -->
+        <div class="col-3">
+            <div class="album_row new_album_row gen_wrapper">
+                <div class="album_row_img">
+                    <img src="{{ other_album.cover_image }}" alt="专辑封面"/>
+                </div>
+                <div class="album_info">
+                    <h3 class="new_album_main">{{ other_album.title }}</h3>
+                    <p class="ranking_main1">SEU Rating: {{ other_album.seu_rating }}</p>
+                    <p class="ranking_main1">{{ other_album.rating_count }}人评分</p>
+                    <div class="album_in_bt">
+                        <div class="album_in_text">
+                            <a href="/albumresult/{{ other_album.id }}/">查看详情</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
 </div>
 
 <script>
@@ -145,12 +178,19 @@
             return truncatedDisc;
         }
     });
-    
 </script>
 
-{% endblock %} {% block secondTitleDiv %} {% endblock %}
+{% endblock %}
+
+{% block secondTitleDiv %}
+
+{% endblock %}
 
 <!-- 替换albums -->
-{% block albums %} {% endblock %}
+{% block albums %}
+
+
+
+{% endblock %}
 
 
