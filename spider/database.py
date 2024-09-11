@@ -9,7 +9,6 @@ db = pymysql.connect(
     password="root",
     database="bdt_database"
 )
-
 cursor = db.cursor()
 
 
