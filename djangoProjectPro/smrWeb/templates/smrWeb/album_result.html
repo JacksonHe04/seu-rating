@@ -1,13 +1,10 @@
-<!-- smrWeb/templates/smrWeb/musician_result.html -->
-<!-- 搜索音乐人得到的结果页面 -->
+<!-- smrWeb/templates/smrWeb/album_result.html -->
+<!-- 专辑结果展示页面 -->
 
 {% extends 'smrWeb/base.html' %}
 
 <!-- 替换title -->
 {% block title %}Album Result{% endblock %}
-
-<!-- 替换bestTitle -->
-<!--{% block bestTitleDiv %}{% endblock %}-->
 
 <!-- 替换searchDiv -->
 {% block new_container %}
@@ -27,8 +24,9 @@
                         </div>
                         <!-- 专辑介绍 -->
                         <div class="album_intro gen_wrapper">
-                            <p class="album_intro_text">{{ album.album_intro }}</p>
+                            <p class="album_intro_text" id="album_intro_text">{{ album.album_intro }}</p>
                         </div>
+   
                     </div>
                     
                     <div class="col-6 pr-4">
@@ -71,8 +69,8 @@
                                     <div class="album_data rating_wrapper">
                                         <div class="data_source_div">
                                             <p class="data_source_text">
-                                                我们收集了了<b class="rating_percent">{{ album.short_count }}</b> 条短评<br/>
-                                                以及 <b class="rating_percent">{{ album.long_count }}</b> 条长评<br/>
+                                                我们收集了了<b class="rating_percent">{{ album.short_count }}</b> 条长评<br/>
+                                                以及 <b class="rating_percent">{{ album.long_count }}</b> 条短评<br/>
                                                 通过我们的 SEU Rating
                                                 算法对评价给予相应的权重进行筛选和计算，得到最终的 SEU Rating
                                                 评分<br/>
@@ -83,11 +81,10 @@
                                         <div class="data_analysis_div">
                                             <p class="data_analysis_text">
                                                 <!-- prettier-ignore -->
-                                                我们的 SEU Rating 评分比豆瓣评分高了<b class="rating_percent">{{ album.rating_difference }}</b>%<br/>
+                                                我们的 SEU Rating 评分比豆瓣评分相差<b class="rating_percent">{{ album.rating_difference }}</b>%<br/>
                                                 <!-- prettier-ignore -->
                                                 这主要是由于：
-                                                <em>我们把权重更多地给予长评和赞同数更多的短评，而这些用户往往打出了高分，从而更大程度上影响了SEU Rating算法下的评分
-                                                </em>
+                                                我们把权重更多地给予长评和赞同数更多的短评，而这些用户的打分更大程度上影响了SEU Rating算法下的评分
                                                 <!-- prettier-ignore -->
                                             </p>
                                         </div>
@@ -101,7 +98,7 @@
                         <div class="album_disc gen_wrapper">
                             <h1 class="album_disc_title">专辑曲目</h1>
                             <!-- prettier-ignore -->
-                            <p class="album_disc_text">
+                            <p class="album_disc_text" id="album_disc_text">
                                 {{ album.disc }}
                             </p>
                             <!-- prettier-ignore -->
@@ -111,9 +108,89 @@
             </div>
         </div>
     </div>
+    
+    <div class="musicians_section layout_padding">
+    <div class="container recommend_title" style="margin-top: -100px">
+        <h1 class="secondTitle">
+            下滑以获得更多专辑推荐<br>
+        </h1>
+    </div>
+    <div class="album_recommend_section">
+    <div class="row">
+        {% for other_album in other_albums|slice:":4" %}
+        <!-- 专辑展示 -->
+        <div class="col-3">
+            <div class="album_row new_album_row gen_wrapper">
+                <div class="album_row_img">
+                    <img src="{{ other_album.cover_image }}" alt="专辑封面"/>
+                </div>
+                <div class="album_info">
+                    <h3 class="new_album_main">{{ other_album.title }}</h3>
+                    <p class="ranking_main1">SEU Rating: {{ other_album.seu_rating }}</p>
+                    <p class="ranking_main1">{{ other_album.rating_count }}人评分</p>
+                    <div class="album_in_bt">
+                        <div class="album_in_text">
+                            <a href="/albumresult/{{ other_album.id }}/">查看详情</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+</div>
 </div>
 
-{% endblock %} {% block secondTitleDiv %} {% endblock %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const maxLength = 120; // 设定最大长度
+        const maxDisc = 10;
+        const albumIntroText = document.getElementById('album_intro_text');
+        const albumIntro = albumIntroText.textContent.trim();
+        const albumDiscText = document.getElementById('album_disc_text');
+        const albumDisc = albumDiscText.textContent.trim();
+        const truncatedDisc = truncateTextByNewlines(albumDisc, maxDisc);
+        
+        albumDiscText.textContent = truncatedDisc;
+
+    
+        if (albumIntro.length > maxLength) {
+            albumIntroText.textContent = `${albumIntro.substring(0, maxLength)}......`;
+        }
+        
+        function truncateTextByNewlines(text,  maxDisc) {
+            const lines = text.split('\n');
+            let truncatedDisc = '';
+
+            for (let i = 0; i < Math.min(lines.length,  maxDisc); i++) {
+                truncatedDisc += lines[i];
+                if (i <  maxDisc - 1) {
+                    truncatedDisc += '\n';
+                }
+            }
+
+            if (lines.length >  maxDisc) {
+                truncatedDisc += '\n...'; // 添加省略号
+            }
+
+            return truncatedDisc;
+        }
+    });
+</script>
+
+{% endblock %}
+
+{% block secondTitleDiv %}
+
+{% endblock %}
 
 <!-- 替换albums -->
-{% block albums %} {% endblock %}
+{% block albums %}
+
+
+
+{% endblock %}
+
+

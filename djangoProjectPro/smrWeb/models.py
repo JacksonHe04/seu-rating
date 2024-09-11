@@ -1,4 +1,5 @@
 # smrWeb/models.py
+# 定义Django应用中的两个模型类Album和Musician并建立了关联关系。
 from django.db import models
 
 
@@ -34,6 +35,3 @@ class Musician(models.Model):
 
     def __str__(self):
         return self.name
-
-
-

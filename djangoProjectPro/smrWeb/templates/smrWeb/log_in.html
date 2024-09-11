@@ -1,5 +1,5 @@
-<!--myapp/templates/myapp/login.html -->
-<!-- 登录（未使用base.html） -->
+<!--smrWeb/templates/smrWeb/login.html -->
+<!-- 登录页面 -->
 {% extends 'smrWeb/base.html' %}
 
 {% block title %}
@@ -80,24 +80,3 @@ Log in SEU Music Rating
     </div>
 </div>
 {% endblock %}
-
-
-
-<!-- 引入pffJs/search.js -->
-<script src="../../static/pffJs/search.js"></script>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        // 获取表单元素
-        const form = document.getElementById("loginForm");
-
-        // 监听表单提交事件
-        form.addEventListener("submit", function (event) {
-            event.preventDefault(); // 阻止默认的表单提交行为
-
-            // 这里可以添加验证逻辑，例如检查邮箱和密码是否正确
-            // 假设验证通过
-            window.location.href = "home.html"; //
-        });
-    });
-</script>

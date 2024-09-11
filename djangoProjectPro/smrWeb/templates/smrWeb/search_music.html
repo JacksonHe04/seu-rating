@@ -1,5 +1,5 @@
-<!-- smrWeb/templates/smrWeb/home_page.html -->
-<!-- 首页 -->
+<!-- smrWeb/templates/smrWeb/search_music.html -->
+<!-- 发现音乐页面 -->
 
 {% extends 'smrWeb/base.html' %}
 
@@ -14,21 +14,22 @@ Search Music
 <!-- 替换search_musician -->
 {% block search_musician %}
 <!-- 搜索和搜索区域的主要容器 -->
-<div class="box_main">
-    <!-- 可输入框，允许用户输入以搜索工作, HtmlFormInputWithoutLabel, HtmlFormInputWithoutLabel -->
-    <!--suppress HtmlFormInputWithoutLabel, HtmlFormInputWithoutLabel, HtmlFormInputWithoutLabel -->
-    <input
-            type="text"
-            class="artist_bt"
-            placeholder="请输入你想了解的音乐及其作者"
-            name=""
-            required
-    />
-    <!-- 搜索按钮，引导用户搜索服务 -->
-    <button class="search_bt"><a href="/musicianresult">搜 索</a></button>
-</div>
+<form action="/albumresult" method="get">
+    <div class="box_main">
+        <!-- 可输入框，允许用户输入以搜索工作, HtmlFormInputWithoutLabel, HtmlFormInputWithoutLabel -->
+        <input
+                type="text"
+                class="artist_bt"
+                placeholder="请输入你想了解的音乐"
+                name="query"
+                required
+        />
+        <!-- 搜索按钮，引导用户搜索服务 -->
+        <button type="submit" class="search_bt">搜 索</button>
+    </div>
+</form>
 <!-- 解释性文字，向用户介绍该搜索引擎的功能 -->
 <p class="there_text">
-    你可以这样输入，例如：晴天 周杰伦，以了解该音乐作品的信息
+    你可以这样输入，例如：安和桥北，以了解该音乐的信息
 </p>
 {% endblock %}
