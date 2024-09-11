@@ -6,8 +6,8 @@ import lxml
 db = pymysql.connect(
     host="localhost",
     user="root",
-    password="vsmvpvp10MS",
-    database="smr_database"
+    password="root",
+    database="bdt_database"
 )
 
 cursor = db.cursor()

@@ -17,6 +17,7 @@ data = {
 session = None
 
 
+
 async def create_session():
     global session
     if session is None:

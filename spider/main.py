@@ -58,19 +58,19 @@ async def main():
             'https://www.douban.com/personage/27572144/',  # 宋冬野
             'https://www.douban.com/personage/35848255/',  # 新裤子
             'https://www.douban.com/personage/35848238/',  # 痛仰
-            'https://www.douban.com/personage/35848132/',  # 刺猬
-            'https://www.douban.com/personage/35845811/',  # 盘尼西林
-            'https://www.douban.com/personage/35848143/',  # 二手玫瑰
-            'https://www.douban.com/personage/35848133/',  # 达达
-            'https://www.douban.com/personage/35844488/',  # 大波浪
-            'https://www.douban.com/personage/35846867/',  # Joyside
-            'https://www.douban.com/personage/35848195/',  # 木马
-            'https://www.douban.com/personage/35848220/',  # 声音碎片
-            'https://www.douban.com/personage/35848221/',  # 声音玩具
-            'https://www.douban.com/personage/27560519/',  # 周深
-            'https://www.douban.com/personage/35844618/',  # 房东的猫
-            'https://www.douban.com/personage/35843178/',  # 丢火车
-            'https://www.douban.com/personage/27499315/',  # 梁博
+            # 'https://www.douban.com/personage/35848132/',  # 刺猬
+            # 'https://www.douban.com/personage/35845811/',  # 盘尼西林
+            # 'https://www.douban.com/personage/35848143/',  # 二手玫瑰
+            # 'https://www.douban.com/personage/35848133/',  # 达达
+            # 'https://www.douban.com/personage/35844488/',  # 大波浪
+            # 'https://www.douban.com/personage/35846867/',  # Joyside
+            # 'https://www.douban.com/personage/35848195/',  # 木马
+            # 'https://www.douban.com/personage/35848220/',  # 声音碎片
+            # 'https://www.douban.com/personage/35848221/',  # 声音玩具
+            # 'https://www.douban.com/personage/27560519/',  # 周深
+            # 'https://www.douban.com/personage/35844618/',  # 房东的猫
+            # 'https://www.douban.com/personage/35843178/',  # 丢火车
+            # 'https://www.douban.com/personage/27499315/',  # 梁博
             # 'https://www.douban.com/personage/27565112/',  # 胡彦斌
             # 'https://www.douban.com/personage/27404192/',  # 张信哲
             # 'https://www.douban.com/personage/27484739/',  # 蔡健雅
