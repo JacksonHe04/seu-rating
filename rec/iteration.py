@@ -23,13 +23,29 @@ data_cleaned = data.dropna(subset=['score']).copy()
 
 # 2. 定义初始权重：根据likes和length
 def calculate_initial_weight(row):
+    # 检查数据类型
+    if not isinstance(row['likes'], (int, float)) or not isinstance(row['length'], (int, float)):
+        raise ValueError("Invalid data type for 'likes' or 'length'.")
+
     weight = row['likes']
     if row['length'] == 1:  # 长评权重大
-        weight *= 1.2
-    return weight if weight > 0 else 1  # 确保权重不为0
+        weight *= 1.7
+
+    # # 根据评分者听过多少音乐和关注者人数调整权重
+    # weight *= (1 + (row['listen'] / 100))  # 可以根据需求调整比例
+    # weight *= (1 + (row['follow'] / 100))  # 同上
+
+    # 确保权重不为0
+    return max(weight, 1)
 
 
-data_cleaned['weight'] = data_cleaned.apply(calculate_initial_weight, axis=1)
+# 使用向量化操作计算权重
+data_cleaned['weight'] = data_cleaned['likes'].copy()
+data_cleaned.loc[data_cleaned['length'] == 1, 'weight'] *= 1.2
+data_cleaned['weight'] = data_cleaned['weight'].apply(lambda x: max(x, 1))
+
+
+# data_cleaned['weight'] = data_cleaned.apply(calculate_initial_weight, axis=1)
 
 
 # 3. 定义迭代法函数来计算综合评分
@@ -56,12 +72,24 @@ def iterative_weighting(df, iterations=10):
         df['weighted_score'] = df['new_weighted_score'].fillna(df['weighted_score'])
 
         print(df[['album_id', 'weighted_score']].drop_duplicates())
+        # 在每次迭代后打印关键信息
+        print(f"迭代第 {i + 1} 次")
+        print(f"当前数据集大小: {len(df)}")
+        print(f"当前数据集前几行: \n{df.head()}")
 
     return df
 
 
 # 4. 执行迭代法计算
 data_cleaned = iterative_weighting(data_cleaned, iterations=10)
+
+
+# 计算每个专辑的加权平均分数
+def compute_weighted_score(group):
+    if group['weight'].sum() > 0:
+        return np.average(group['weighted_score'], weights=group['weight'])
+    else:
+        return np.nan
 
 
 # 5. 归一化到 10 分制
@@ -83,7 +111,6 @@ def normalize_to_10(df):
     # 防止最终分数超出范围
     df['final_score'] = df['final_score'].clip(0, 10)
     return df
-
 
 data_cleaned = normalize_to_10(data_cleaned)
 
@@ -107,9 +134,7 @@ def get_seu_rating():
         db.rollback()
 
 
-# 调用函数
 get_seu_rating()
-
 
 # 从数据库中提取数据
 query_musician_album = "SELECT * FROM musician_album;"
@@ -153,8 +178,9 @@ def show_musician_top_album():
                 WHERE id = %s
             """
             cursor.execute(update_query, (
-            album_ids[0], album_ids[1] if len(album_ids) > 1 else None, album_ids[2] if len(album_ids) > 2 else None,
-            musician_id))
+                album_ids[0], album_ids[1] if len(album_ids) > 1 else None,
+                album_ids[2] if len(album_ids) > 2 else None,
+                musician_id))
 
         # 提交事务
         db.commit()
@@ -163,14 +189,40 @@ def show_musician_top_album():
         db.rollback()
 
 
-# 调用函数
 show_musician_top_album()
 
-# 关闭数据库连接
-db.close()
+# 计算 rating_difference
+data_album['rating_difference'] = (data_album['seu_rating'] - data_album['rating']) / data_album['rating'] * 100
+
+
+def get_difference():
+    try:
+        # 使用批量更新
+        updates = []
+        for index, row in data_album.iterrows():
+            album_id = row['id']
+            rating_difference = row['rating_difference']
+            updates.append((rating_difference, album_id))
+
+        # 批量执行更新操作
+        update_query = """
+            UPDATE album 
+            SET rating_difference = %s 
+            WHERE id = %s;
+        """
+        cursor.executemany(update_query, updates)
+
+        # 提交事务
+        db.commit()
+    except Exception as e:
+        print(f"发生错误: {e}")
+        db.rollback()
+
+get_difference()
 # # 将结果插入新表 `recommend`
 # top_albums.to_sql('recommend', con=engine, if_exists='append', index=False)
-#
 # # 输出结果
 # print(top_albums)
-
+#
+# # 关闭数据库连接
+# db.close()
