@@ -4,8 +4,8 @@ class Comment:
         self.score=score #评分
         self.vote_count = vote_count#短评评价有用数
         self.comment_length = comment_length#短评长度
-        self.listened = listened#评论者听过的专辑数量
-        self.followers = followers#评论者粉丝数
+        # self.listened = listened#评论者听过的专辑数量
+        # self.followers = followers#评论者粉丝数
 class Review:
     """长评"""
     def __init__(self,score = None,useful_count = None,useless_count = None,listened = None, followers = None) :

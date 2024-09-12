@@ -21,7 +21,7 @@ data_cleaned = data.dropna(subset=['score']).copy()
 def calculate_initial_weight(row):
     weight = row['likes']
     if row['length'] == 1:  # 长评权重大
-        weight *= 1.2
+        weight *= 5
     return weight if weight > 0 else 1  # 确保权重不为0
 
 
@@ -152,6 +152,10 @@ for musician_id, albums in musician_top_albums.items():
             conn.execute(text(update_query_album))
 
 
+# 用于存储所有专辑的 rating_difference
+rating_differences = []
+
+
 # 更新 Album 表中的 seu_rating 为每张专辑的最终评分
 for index, row in final_album_scores.iterrows():
     album_id = row['album_id']
@@ -165,33 +169,36 @@ for index, row in final_album_scores.iterrows():
     """
     conn.execute(text(update_query_album))
 
+    # 获取更新后的rating值
+    query_album = f"SELECT rating FROM album WHERE id = {album_id};"
+    album_rating = conn.execute(text(query_album)).fetchone()[0]
 
-# 从数据库中提取数据
-query_album = "SELECT id, seu_rating, rating FROM album;"
-data_album = pd.read_sql(query_album, engine)
+    # 计算rating_difference
+    rating_difference = (album_score - album_rating) / album_rating * 100
 
-# 计算 rating_difference
-data_album['rating_difference'] = (data_album['seu_rating'] - data_album['rating']) / data_album['rating'] * 100
-
-# 更新 Album 表中的 rating_difference
-for index, row in data_album.iterrows():
-    album_id = row['id']
-    rating_difference = row['rating_difference']
+    # 将每次计算出的 rating_difference 加入列表
+    rating_differences.append(rating_difference)
 
     # 更新 Album 表的 rating_difference 列
-    update_query_album = f"""
-    UPDATE album 
-    SET rating_difference = {rating_difference} 
-    WHERE id = {album_id};
-    """
-    conn.execute(text(update_query_album))
+    update_query_rating_difference = f"""
+        UPDATE album 
+        SET rating_difference = {rating_difference} 
+        WHERE id = {album_id};
+        """
+    conn.execute(text(update_query_rating_difference))
 
 
 # 确保提交事务
 conn.commit()
 
-# 确保提交事务
-conn.commit()
 
 # 输出结果
 print(top_albums)
+
+# 计算所有 rating_difference 的平均值和方差
+average_rating_difference = np.mean(rating_differences)
+variance_rating_difference = np.var(rating_differences)
+
+# 输出结果
+print(f"rating_difference的平均值为: {average_rating_difference}")
+print(f"rating_difference的方差为: {variance_rating_difference}")

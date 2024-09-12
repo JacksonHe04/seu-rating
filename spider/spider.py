@@ -8,7 +8,7 @@ headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
 }
 data = {
-    'name': '18978509108',
+    'name': '13695663529',
     'password': '123456asdfghjkl',
     'remember': 'true',
     'ck': '',
@@ -16,6 +16,16 @@ data = {
 }
 session = None
 
+
+async def get_text(url, proxy=None):
+    try:
+        async with aiohttp.ClientSession() as session:
+            async with session.get(url, headers=headers, proxy=proxy) as resp:
+                resp.raise_for_status()
+                return await resp.text()
+    except Exception as e:
+        print(f"跳过了一个没有价值的短评辣! {e}")
+        return None
 
 
 async def create_session():
@@ -34,30 +44,29 @@ async def close_session():
 async def login(login_url='https://accounts.douban.com/j/mobile/login/basic', data=data):
     async with session.post(login_url, data=data) as response:
         if response.status == 200:
-            # 登录成功，处理响应
-            print(response.text())
+            print(await response.text())
             return response
 
 
 async def get_text(url):
     try:
         async with session.get(url, headers=headers) as resp:
-            resp.encoding = 'utf-8'
             resp.raise_for_status()
             return await resp.text()
-    except:
-        print(url)
-        print("访问异常!")
+    except Exception as e:
+        print(f"访问异常! {e}")
+        return None
 
 
 async def get_comments(url):
-    """获取一个url下的所有短评  网址输入为https://music.douban.com/subject/***/comments/  形式 \n """
+    """获取一个url下的所有短评  网址输入为https://music.douban.com/subject/***/comments/  形式"""
     text = await get_text(url)
+    if text is None:
+        return []
     tree = etree.HTML(text)
-    num = int(
-        re.findall(r'\d+', tree.xpath('/html/body/div[3]/div[1]/div/div[1]/div/div[1]/ul/li[1]/span/text()')[0])[0])
-    num = min(num, 500)  # 确保评论数不超过 500
-    pages = [page for page in range(0, 200, 20)]  # 修改为实际需要的页码
+    num = int(re.findall(r'[0-9]+', tree.xpath('/html/body/div[3]/div[1]/div/div[1]/div/div[1]/ul/li[1]/span/text()')[0])[0])
+    num = min(num, 200)  # 确保评论数不超过 500
+    pages = [page for page in range(0, num, 20)]  # 修改为实际需要的页码
     urls = get_comments_urls(url, pages)
     tasks = [get_comment(comment_url) for comment_url in urls]  # 创建获取每个评论的任务
     comments_lists = await asyncio.gather(*tasks)
@@ -68,13 +77,14 @@ async def get_comments(url):
 async def get_comment(url):
     """获取输入的URL中的所有短评的数据"""
     text = await get_text(url)
+    if text is None:
+        return []
     tree = etree.HTML(text)
     comments = tree.xpath('//*[@id="comments"]/div[1]/ul/li/div[2]')
     CommentSet = []
     for comment in comments:
-        unprocessed_score = re.findall('\d', comment.xpath('./h3/span[2]/span[1]/@class')[0])
+        unprocessed_score = re.findall('[0-9]', comment.xpath('./h3/span[2]/span[1]/@class')[0])
         score = unprocessed_score[0] if unprocessed_score else None
-        # comment_length = str(len(comment.xpath('./p/span/text()')[0]))
         vote_count = comment.xpath('./h3/span[1]/span/text()')[0]
         CommentSet.append(items.Comment(score=score, vote_count=vote_count))
     return CommentSet
@@ -82,27 +92,30 @@ async def get_comment(url):
 
 async def get_reviews(url):
     """获取该url下所有乐评(长评)的数据,并返回Review类的列表"""
-    # 甚至豆瓣这有bug,长评数是对不上它返回的网页数据的，有的页只有16条长评，它计算时却按20条计算
     text = await get_text(url)
+    if text is None:
+        return []
     tree = etree.HTML(text)
-    num = int(re.findall('\d+', tree.xpath('//*[@id="content"]/h1/text()')[0])[0])
+    num = int(re.findall('[0-9]+', tree.xpath('//*[@id="content"]/h1/text()')[0])[0])
     num = min(num, 500)
     pages = [page for page in range(0, num, 20)]
     urls = get_reviews_urls(url, pages)
     tasks = [get_review(review_url) for review_url in urls]
     review_lists = await asyncio.gather(*tasks)
-    all_reviews = [comment for sublist in review_lists for comment in sublist]
+    all_reviews = [review for sublist in review_lists for review in sublist]
     return all_reviews
 
 
 async def get_review(url):
     """获取当前url下的乐评"""
     text = await get_text(url)
+    if text is None:
+        return []
     tree = etree.HTML(text)
     reviews = tree.xpath('//*[@id="content"]/div/div[1]/div[1]//div[@data-cid]')
     reviewsSet = []
     for review in reviews:
-        unprocessed_score = re.findall('\d', review.xpath('./div/header/span[1]/@class')[0])
+        unprocessed_score = re.findall('[0-9]', review.xpath('./div/header/span[1]/@class')[0])
         if not unprocessed_score:
             score = None
         else:
@@ -133,35 +146,49 @@ def get_reviews_urls(url, pages):
 
 
 async def get_info_artist(url):
-    """获取该url对应的音乐人信息"""
     text = await get_text(url)
+    if text is None:
+        return None
+
     tree = etree.HTML(text)
-    name = tree.xpath('//*[@id="content"]/div/div[1]/section[1]/div[1]/h1/text()')[0]
-    img_scr = tree.xpath('//*[@id="content"]/div/div[1]/section[1]/div[1]/div[1]/div[1]/img/@src')[0]
-    profile = tree.xpath('//*[@id="content"]/div/div[1]/section[2]/div[1]/div/p[1]/text()')
-    profile = profile[0].strip()
-    basic_information = tree.xpath('//*[@id="content"]/div/div[1]/section[1]/div[1]/div[2]/ul/li/span/text()')
-    info = []
-    for i in range(0, len(basic_information), 2):
-        info.append(basic_information[i].strip() + basic_information[i + 1].strip())
-    # 获取专辑信息
-    creations_url = url + 'creations?sortby=collection&type=musician&role=&format=text'
-    creations_text = await get_text(creations_url)
-    creations_tree = etree.HTML(creations_text)
-    creations_album_urls = creations_tree.xpath('//*[@id="content"]/div/div[1]/div[1]/table/tbody/tr/td[1]/a/@href')
-    count = len(creations_album_urls)
-    count = min(count, 6)
-    creations_album_urls = creations_tree.xpath('//*[@id="content"]/div/div[1]/div[1]/table/tbody/tr/td[1]/a/@href')[
-                           0:count]
-    tasks = [get_album(comment_url, author=name) for comment_url in creations_album_urls]
-    album_lists = await asyncio.gather(*tasks)
-    albums = [album for album in album_lists]
-    return items.Musician(name, profile, img_scr, info, albums)
+    try:
+        name = tree.xpath('//*[@id="content"]/div/div[1]/section[1]/div[1]/h1/text()')[0]
+        img_scr = tree.xpath('//*[@id="content"]/div/div[1]/section[1]/div[1]/div[1]/div[1]/img/@src')[0]
+        profile = tree.xpath('//*[@id="content"]/div/div[1]/section[2]/div[1]/div/p[1]/text()')
+        profile = profile[0].strip()
+        basic_information = tree.xpath('//*[@id="content"]/div/div[1]/section[1]/div[1]/div[2]/ul/li/span/text()')
+        info = []
+        for i in range(0, len(basic_information), 2):
+            info.append(basic_information[i].strip() + basic_information[i + 1].strip())
+
+        # 获取专辑信息
+        creations_url = url + 'creations?sortby=collection&type=musician&role=&format=text'
+        creations_text = await get_text(creations_url)
+        if creations_text is None:
+            return None
+
+        creations_tree = etree.HTML(creations_text)
+        creations_album_urls = creations_tree.xpath('//*[@id="content"]/div/div[1]/div[1]/table/tbody/tr/td[1]/a/@href')
+        count = len(creations_album_urls)
+        count = min(count, 6)
+        creations_album_urls = creations_tree.xpath('//*[@id="content"]/div/div[1]/div[1]/table/tbody/tr/td[1]/a/@href')[0:count]
+
+        tasks = [get_album(comment_url, author=name) for comment_url in creations_album_urls]
+        album_lists = await asyncio.gather(*tasks)
+        albums = [album for album in album_lists]
+
+        return items.Musician(name, profile, img_scr, info, albums)
+    except IndexError:
+        print(f"无法解析 {url} 的数据，请检查网页结构。")
+        return None
+
 
 
 async def get_album(url, author):
     """获取当前url数据下的专辑类"""
     text = await get_text(url)
+    if text is None:
+        return None
     tree = etree.HTML(text)
 
     player_elements = tree.xpath('//*[@id="info"]/span/span//text()')
@@ -174,8 +201,8 @@ async def get_album(url, author):
     voters_number = tree.xpath('//*[@id="interest_sectl"]/div/div[2]/div/div[2]/a/span/text()')[0]
     name = tree.xpath('//*[@id="wrapper"]/h1/span/text()')[0]
     # 获取评论数
-    comments_num = re.findall('\d+', tree.xpath('//*[@id="comments-section"]/div[1]/h2/span/a/text()')[0])[0]
-    reviews_num = re.findall('\d+', tree.xpath('//*[@id="reviews-wrapper"]/header/h2/span/a/text()')[0])[0]
+    comments_num = re.findall('[0-9]+', tree.xpath('//*[@id="comments-section"]/div[1]/h2/span/a/text()')[0])[0]
+    reviews_num = re.findall('[0-9]+', tree.xpath('//*[@id="reviews-wrapper"]/header/h2/span/a/text()')[0])[0]
     # 获取专辑信息
     intro1 = tree.xpath('//*[@id="link-report"]/span[1]/text()')
     intro2 = tree.xpath('//*[@id="link-report"]/span[2]/text()')
