@@ -38,7 +38,7 @@ BDTrueValueRecSys 是2024年暑期学校《专业技能实训》课程中的项�
 2. 新建 `Feat_xxx` 分支。
 3. 提交代码。
 4. 新建 Pull Request。
-5. 
+
 ## 开发说明
 #### 在 PyCharm 安装 Gitee 插件
 1. 设置
