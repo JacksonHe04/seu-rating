@@ -1,4 +1,4 @@
-# djangoProjectPro/djangoProjectPro/urls.py
+# django_app/django_system/urls.py
 # Django 项目路由管理，主要的路由管理请移步 django_web/urls.py
 from django.contrib import admin
 from django.urls import include, path

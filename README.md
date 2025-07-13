@@ -1,8 +1,8 @@
-# BDTrueValueRecSys README
+# seu-rating README
 
 ## 项目简介
 我们是东南大学22级的人工智能专业本科生蒋妙、何锦诚、吴锦承。
-BDTrueValueRecSys 是2024年暑期学校《专业技能实训》课程中的项目。该项目旨在开发一个基于大数据的真实值推荐系统，利用先进的算法和技术为用户提供音乐推荐服务。
+seu-rating 是2024年暑期学校《专业技能实训》课程中的项目。该项目旨在开发一个基于大数据的真实值推荐系统，利用先进的算法和技术为用户提供音乐推荐服务。
 
 ## 软件架构
 我们的软件架构包括前端和后端两个主要部分：
@@ -16,11 +16,11 @@ BDTrueValueRecSys 是2024年暑期学校《专业技能实训》课程中的项�
 1. 确保您的计算机上安装了 Python 3 和 MySQL。
 2. 克隆本仓库到本地：
    ```bash
-   git clone https://gitee.com/your_username/BDTrueValueRecSys.git
+   git clone https://gitee.com/your_username/seu-rating.git
    ```
 3. 进入项目目录并安装所需的 Python 库：
    ```bash
-   cd BDTrueValueRecSys
+   cd seu-rating
    pip install
    ```
 4. 配置 MySQL 数据库，并导入数据库脚本（详情见 spider 和 rec 文件夹中的说明）。
@@ -28,7 +28,7 @@ BDTrueValueRecSys 是2024年暑期学校《专业技能实训》课程中的项�
 ## 使用说明
 
 1. 启动 MySQL 服务并确保数据库已正确配置。
-2. 在 djangoProjectPro 目录下，运行 python manage.py runserver 启动项目网页。
+2. 在 django_app 目录下，运行 python manage.py runserver 启动项目网页。
 3. 使用浏览器访问前端页面，通常为 `http://localhost:8000` （根据实际配置可能有所不同）。
 4. 根据界面提示输入相关信息，即可开始使用推荐系统。
 
